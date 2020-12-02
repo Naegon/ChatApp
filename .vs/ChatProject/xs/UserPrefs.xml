@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="Whole">
+  <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Client.cs">
+    <Files>
+      <File FileName="ClientSide/Client.cs" Line="32" Column="73" />
+      <File FileName="ServerSide/Server.cs" Line="59" Column="1" />
+      <File FileName="Communication/Net.cs" Line="13" Column="1" />
+      <File FileName="Communication/User.cs" Line="33" Column="35" />
+      <File FileName="ClientSide/Program.cs" Line="31" Column="39" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ChatProject" expanded="True">
+            <Node name="ClientSide" expanded="True">
+              <Node name="Client.cs" selected="True" />
+            </Node>
+            <Node name="Communication" expanded="True" />
+            <Node name="ServerSide" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ClientSide PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Whole" Name="Whole">
+      <Items>
+        <StartupItem ItemId="{B30D1FBE-478D-457B-88FD-60EE5844C60B}" ItemName="ClientSide" ConfigurationId="Default" />
+        <StartupItem ItemId="{4D419840-9A09-407E-8B3E-1DFF425708E6}" ItemName="ServerSide" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

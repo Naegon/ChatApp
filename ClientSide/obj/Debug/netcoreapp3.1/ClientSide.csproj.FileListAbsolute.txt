@@ -1,0 +1,15 @@
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/ClientSide.deps.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/ClientSide.runtimeconfig.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/ClientSide.runtimeconfig.dev.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/ClientSide.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/ClientSide.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/Communication.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/bin/Debug/netcoreapp3.1/Communication.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.csprojAssemblyReference.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.AssemblyInfoInputs.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.AssemblyInfo.cs
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.csproj.CoreCompileInputs.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.csproj.CopyComplete
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/obj/Debug/netcoreapp3.1/ClientSide.genruntimeconfig.cache

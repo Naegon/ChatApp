@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/naegon/.dotnet/store/|arch|/|tfm|",
+      "/Users/naegon/.nuget/packages"
+    ]
+  }
+}

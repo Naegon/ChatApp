@@ -1,0 +1,9 @@
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/bin/Debug/netcoreapp3.1/Communication.deps.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/bin/Debug/netcoreapp3.1/Communication.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/bin/Debug/netcoreapp3.1/Communication.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.csprojAssemblyReference.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.AssemblyInfoInputs.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.AssemblyInfo.cs
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.csproj.CoreCompileInputs.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.pdb
