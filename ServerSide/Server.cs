@@ -11,7 +11,6 @@ namespace ServerSide
     public class Server
     {
         private int port;
-        private List<User> userList;
 
         public Server(int port)
         {
@@ -22,6 +21,8 @@ namespace ServerSide
         {
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
+
+            
 
             while (true)
             {
@@ -34,6 +35,7 @@ namespace ServerSide
         class Receiver
         {
             private TcpClient comm;
+            public UserList userList;
 
             public Receiver(TcpClient s)
             {
@@ -42,9 +44,18 @@ namespace ServerSide
 
             public void doOperation()
             {
+                if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
+                else userList = new UserList();
+
+                Console.WriteLine("User list: ");
+                userList.Print();
+
                 User newUser = (User)Net.rcvMsg(comm.GetStream());
                 Console.WriteLine("Receiving data: " + newUser.ToString());
-                Net.sendMsg(comm.GetStream(), new Answer(true, "Jusqu'ici ça marche"));
+                userList.Add(newUser);
+                userList.Serialize();
+
+                Net.sendMsg(comm.GetStream(), new Answer(true, "Utilisateur créé"));
             }
         }
     }
