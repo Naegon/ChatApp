@@ -1,22 +1,23 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Client.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerSide/Server.cs">
     <Files>
       <File FileName="ClientSide/Client.cs" Line="32" Column="73" />
-      <File FileName="ServerSide/Server.cs" Line="59" Column="1" />
-      <File FileName="Communication/Net.cs" Line="13" Column="1" />
+      <File FileName="ServerSide/Server.cs" Line="50" Column="1" />
+      <File FileName="Communication/Net.cs" Line="17" Column="44" />
       <File FileName="Communication/User.cs" Line="33" Column="35" />
       <File FileName="ClientSide/Program.cs" Line="31" Column="39" />
+      <File FileName="ServerSide/Program.cs" Line="8" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
-            <Node name="ClientSide" expanded="True">
-              <Node name="Client.cs" selected="True" />
-            </Node>
+            <Node name="ClientSide" expanded="True" />
             <Node name="Communication" expanded="True" />
-            <Node name="ServerSide" expanded="True" />
+            <Node name="ServerSide" expanded="True">
+              <Node name="Server.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

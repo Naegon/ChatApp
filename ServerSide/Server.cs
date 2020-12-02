@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -10,6 +11,7 @@ namespace ServerSide
     public class Server
     {
         private int port;
+        private List<User> userList;
 
         public Server(int port)
         {
@@ -40,9 +42,9 @@ namespace ServerSide
 
             public void doOperation()
             {
-                NewUser newUser = (NewUser)Net.rcvMsg(comm.GetStream());
+                User newUser = (User)Net.rcvMsg(comm.GetStream());
                 Console.WriteLine("Receiving data: " + newUser.ToString());
-                Net.sendMsg(comm.GetStream(), new StatusUser(true, "Jusqu'ici ça marche"));
+                Net.sendMsg(comm.GetStream(), new Answer(true, "Jusqu'ici ça marche"));
             }
         }
     }

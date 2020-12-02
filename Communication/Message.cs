@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace Communication
 {
-    public interface User
+    public interface Message
     {
         string ToString();
     }
 
     [Serializable]
-    public class NewUser : User
+    public class User : Message
     {
         private String _username;
         private String _password;
@@ -17,7 +17,7 @@ namespace Communication
         public string Username { get => _username; }
         public string Password { get => _password; }
 
-        public NewUser(String username, String password)
+        public User(String username, String password)
         {
             _username = username;
             _password = password;
@@ -30,7 +30,7 @@ namespace Communication
     }
 
     [Serializable]
-    public class StatusUser : User
+    public class Answer : Message
     {
         private bool _error;
         private string _message;
@@ -38,7 +38,7 @@ namespace Communication
         public bool Error { get => _error; }
         public string Message { get => _message; }
 
-        public StatusUser(bool error, string message)
+        public Answer(bool error, string message)
         {
             _error = error;
             _message = message;

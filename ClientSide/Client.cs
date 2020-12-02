@@ -28,8 +28,8 @@ namespace ClientSide
             password = GetPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new NewUser(username, password));
-            Console.WriteLine((StatusUser)Net.rcvMsg(Comm.GetStream()));
+            Net.sendMsg(Comm.GetStream(), new User(username, password));
+            Console.WriteLine((Answer)Net.rcvMsg(Comm.GetStream()));
         }
 
         public string GetPassword()

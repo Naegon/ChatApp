@@ -5,16 +5,16 @@ namespace Communication
 {
     public class Net
     {
-        public static void sendMsg(Stream s, User user)
+        public static void sendMsg(Stream s, Message message)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(s, user);
+            bf.Serialize(s, message);
         }
 
-        public static User rcvMsg(Stream s)
+        public static Message rcvMsg(Stream s)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            return (User)bf.Deserialize(s);
+            return (Message)bf.Deserialize(s);
         }
     }
 }
