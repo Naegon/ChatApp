@@ -4,14 +4,13 @@ C# project in Efrei Paris' forth year
 # Subject
 In this project, you are asked to create a network based  multithreaded client-server chat app.  
 Chatters establish a connection with the server and can do the following :  
-
-Create a profile (login, password) and save it  
-1 - login  
-2 - List topics  
-3 - create topics  
-4 - join topics (only one - bonus : many at the same time)  
-5 - end messages to all chatters on a specific topic  
-6 - send private messages   
+1 - Create a profile (login, password) and save it  
+2 - login  
+3 - List topics  
+4 - create topics  
+5 - join topics (only one - bonus : many at the same time)  
+6 - end messages to all chatters on a specific topic  
+7 - send private messages   
 
 You are free to add new functions to your app, but don't do that unless you've already implemented the ones given above. A graphical interface can be added to your app but this has to be the last phase in your project.  
 You should start this project by doing a full object oriented design of your desired app. This has to be documented in your report and presented to your supervisor (use UML diagrams for that purpose; use-case, sequence, state-transition, class, ... diagrams).  
