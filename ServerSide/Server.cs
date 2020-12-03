@@ -10,6 +10,8 @@ namespace ServerSide
     public class Server
     {
         private int port;
+        private static UserList userList;
+
 
         public Server(int port)
         {
@@ -21,7 +23,11 @@ namespace ServerSide
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 
-            
+            if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
+            else userList = new UserList();
+
+            Console.WriteLine("User list: ");
+            userList.Print();
 
             while (true)
             {
@@ -34,7 +40,6 @@ namespace ServerSide
         class Receiver
         {
             private TcpClient comm;
-            public UserList userList;
 
             public Receiver(TcpClient s)
             {
@@ -43,12 +48,6 @@ namespace ServerSide
 
             public void doOperation()
             {
-                if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
-                else userList = new UserList();
-
-                Console.WriteLine("User list: ");
-                userList.Print();
-
                 while (true)
                 {
                     Message message = Net.rcvMsg(comm.GetStream());

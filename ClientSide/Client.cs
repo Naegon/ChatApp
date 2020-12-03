@@ -17,7 +17,7 @@ namespace ClientSide
 
         public void Menu()
         {
-            Console.WriteLine("Welcome!");
+            Console.WriteLine("\nWelcome!");
             Console.WriteLine("1. Login \n2. Register \n3. Quit");
 
             String choice;
