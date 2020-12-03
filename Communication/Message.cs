@@ -32,21 +32,21 @@ namespace Communication
     [Serializable]
     public class Answer : Message
     {
-        private bool _error;
+        private bool _success;
         private string _message;
 
-        public bool Error { get => _error; }
+        public bool Success { get => _success; }
         public string Message { get => _message; }
 
         public Answer(bool error, string message)
         {
-            _error = error;
+            _success = error;
             _message = message;
         }
 
         public override string ToString()
         {
-            return ((_error ? "Success: " : "Error: ") + _message);
+            return ((_success ? "Success: " : "Error: ") + _message);
         }
     }
 }

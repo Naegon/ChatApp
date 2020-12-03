@@ -15,6 +15,36 @@ namespace ClientSide
             Console.WriteLine("--> Connection established on " + hostname + ":" + port);
         }
 
+        public void Menu()
+        {
+            Console.WriteLine("Welcome!");
+            Console.WriteLine("1. Login \n2. Register \n3. Quit");
+
+            String choice;
+            do
+            {
+                Console.Write("\nPlease choose an option: ");
+                choice = Console.ReadLine();
+            } while (!choice.Equals("1") && !choice.Equals("2") && !choice.Equals("3"));
+
+            switch (choice)
+            {
+                case ("1"):
+                    Console.WriteLine("Login \n");
+                    break;
+                case ("2"):
+                    Console.WriteLine("Register \n");
+                    Register();
+                    break;
+                case ("3"):
+                    Console.WriteLine("Quit");
+                    break;
+                default:
+                    Console.WriteLine("There has been an error");
+                    break;
+            }
+        }
+
 
         public void Register()
         {
@@ -25,14 +55,34 @@ namespace ClientSide
             username = Console.ReadLine();
 
             Console.WriteLine("Choose a secur password:");
-            password = GetPassword();
+            password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
             Net.sendMsg(Comm.GetStream(), new User(username, password));
-            Console.WriteLine((Answer)Net.rcvMsg(Comm.GetStream()));
+
+            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+
+            Console.WriteLine(answer);
+
+            if (answer.Success)
+            {
+                Console.WriteLine("Login");
+                Menu();
+            } else
+            {
+                Console.Write("Try again ? (y/n) ");
+                string ans = Console.ReadLine();
+                while (!(ans.Equals("y") || ans.Equals("n")))
+                {
+                    Console.Write("Please type y (yes) or n (no) ");
+                    ans = Console.ReadLine();
+                }
+                if (ans.Equals("y")) Register();
+                else Menu();
+            }
         }
 
-        public string GetPassword()
+        public static string ReadPassword()
         {
             string pwd = "";
             while (true)

@@ -1,14 +1,12 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServerSide/UserList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerSide/Server.cs">
     <Files>
-      <File FileName="ClientSide/Client.cs" Line="33" Column="10" />
-      <File FileName="ServerSide/Server.cs" Line="52" Column="1" />
-      <File FileName="Communication/Net.cs" Line="21" Column="1" />
-      <File FileName="Communication/User.cs" Line="53" Column="1" />
-      <File FileName="ClientSide/Program.cs" Line="43" Column="1" />
-      <File FileName="ServerSide/Program.cs" Line="8" Column="28" />
-      <File FileName="ServerSide/UserList.cs" Line="7" Column="10" />
+      <File FileName="ClientSide/Client.cs" Line="49" Column="15" />
+      <File FileName="ClientSide/Program.cs" Line="14" Column="27" />
+      <File FileName="ServerSide/Server.cs" Line="71" Column="14" />
+      <File FileName="ServerSide/UserList.cs" Line="1" Column="1" />
+      <File FileName="ServerSide/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,13 +15,10 @@
             <Node name="ClientSide" expanded="True" />
             <Node name="Communication" expanded="True" />
             <Node name="ServerSide" expanded="True">
-              <Node name="UserList.cs" selected="True" />
+              <Node name="Server.cs" selected="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

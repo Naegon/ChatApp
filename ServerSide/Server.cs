@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -50,12 +49,32 @@ namespace ServerSide
                 Console.WriteLine("User list: ");
                 userList.Print();
 
-                User newUser = (User)Net.rcvMsg(comm.GetStream());
-                Console.WriteLine("Receiving data: " + newUser.ToString());
-                userList.Add(newUser);
-                userList.Serialize();
+                while (true)
+                {
+                    User newUser = (User)Net.rcvMsg(comm.GetStream());
+                    Console.WriteLine("\nReceiving data: " + newUser.ToString());
 
-                Net.sendMsg(comm.GetStream(), new Answer(true, "Utilisateur créé"));
+                    bool isValid = true;
+                    foreach (User user in userList.all)
+                    {
+                        if (user.Username.Equals(newUser.Username))
+                        {
+                            Console.WriteLine("Error: An user with that username already exist");
+                            Net.sendMsg(comm.GetStream(), new Answer(false, "An user with that username already exist"));
+                            isValid = false;
+                        }
+                    }
+
+                    if (isValid)
+                    {
+                        Console.WriteLine("Creation of the new user...");
+                        userList.Add(newUser);
+                        userList.Serialize();
+
+                        Console.WriteLine("Success: New user added");
+                        Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
+                    }
+                }
             }
         }
     }
