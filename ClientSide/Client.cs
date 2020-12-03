@@ -58,7 +58,7 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new UserMsg("Login", username, password));
+            Net.sendMsg(Comm.GetStream(), new User("Login", username, password));
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
 
@@ -95,7 +95,7 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new UserMsg("Register", username, password));
+            Net.sendMsg(Comm.GetStream(), new User("Register", username, password));
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
 
