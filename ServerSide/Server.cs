@@ -51,13 +51,13 @@ namespace ServerSide
 
                 while (true)
                 {
-                    Message test = Net.rcvMsg(comm.GetStream());
+                    Message message = Net.rcvMsg(comm.GetStream());
+                    Console.WriteLine("\nReceiving data: \n" + message.ToString());
 
-                    switch (test.GetType().ToString())
+                    switch (message.GetType().ToString())
                     {
-                        case "Communication.User":
-                            Console.WriteLine("User");
-                            Register((User)test);
+                        case "Communication.UserMsg":
+                            ManageUser((UserMsg)message);
                             break;
                         default:
                             Console.WriteLine("To be implemented");
@@ -66,29 +66,49 @@ namespace ServerSide
                 }
             }
 
-            public void Register(User newUser)
+            public void ManageUser(UserMsg userMsg)
             {
-                Console.WriteLine("\nReceiving data: " + newUser.ToString());
-
-                bool isValid = true;
-                foreach (User user in userList.all)
-                {
-                    if (user.Username.Equals(newUser.Username))
+                if (userMsg.Type.Equals("Register")) {
+                    bool isValid = true;
+                    foreach (User user in userList.all)
                     {
-                        Console.WriteLine("Error: An user with that username already exist");
-                        Net.sendMsg(comm.GetStream(), new Answer(false, "An user with that username already exist"));
-                        isValid = false;
+                        if (user.Username.Equals(userMsg.Username))
+                        {
+                            Console.WriteLine("Error: An user with that username already exist");
+                            Net.sendMsg(comm.GetStream(), new Answer(false, "An user with that username already exist"));
+                            isValid = false;
+                        }
                     }
-                }
 
-                if (isValid)
+                    if (isValid)
+                    {
+                        Console.WriteLine("Creation of the new user...");
+                        userList.Add(new User(userMsg.Username, userMsg.Password));
+                        userList.Serialize();
+
+                        Console.WriteLine("Success: New user added");
+                        Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
+                    }
+                } else
                 {
-                    Console.WriteLine("Creation of the new user...");
-                    userList.Add(newUser);
-                    userList.Serialize();
-
-                    Console.WriteLine("Success: New user added");
-                    Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
+                    foreach (User user in userList.all)
+                    {
+                        if (user.Username.Equals(userMsg.Username))
+                        {
+                            if (user.Password.Equals(userMsg.Password)) {
+                                Console.WriteLine("Success: Login succesfully");
+                                Net.sendMsg(comm.GetStream(), new Answer(true, "Login succesfully"));
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: Wrong password");
+                                Net.sendMsg(comm.GetStream(), new Answer(false, "Wrong password"));
+                            }
+                            return;
+                        }
+                    }
+                    Console.WriteLine("Error: No user with that username");
+                    Net.sendMsg(comm.GetStream(), new Answer(false, "No user with that username"));
                 }
             }
         }

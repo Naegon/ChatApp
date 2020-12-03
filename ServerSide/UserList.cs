@@ -42,7 +42,8 @@ namespace ServerSide
 
         public void Print()
         {
-            all.ForEach(User => Console.WriteLine(User));
+            if (all.Count > 0) all.ForEach(User => Console.WriteLine(User));
+            else Console.WriteLine("No user yet");
         }
     }
 }

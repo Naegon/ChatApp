@@ -9,23 +9,26 @@ namespace Communication
     }
 
     [Serializable]
-    public class User : Message
+    public class UserMsg : Message
     {
-        private String _username;
-        private String _password;
+        private string _type;
+        private string _username;
+        private string _password;
 
+        public string Type { get => _type; }
         public string Username { get => _username; }
         public string Password { get => _password; }
 
-        public User(String username, String password)
+        public UserMsg(string type, string username, string password)
         {
+            _type = type;
             _username = username;
             _password = password;
         }
 
         public override string ToString()
         {
-            return ("Username: " + _username + " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)));
+            return ("[UserMsg] Type: " + _type + " - Username: " + _username + " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)));
         }
     }
 
@@ -46,7 +49,7 @@ namespace Communication
 
         public override string ToString()
         {
-            return ((_success ? "Success: " : "Error: ") + _message);
+            return ("[Message] " + (_success ? "Success: " : "Error: ") + _message);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace ClientSide
             {
                 case ("1"):
                     Console.WriteLine("Login \n");
+                    Login();
                     break;
                 case ("2"):
                     Console.WriteLine("Register \n");
@@ -42,6 +43,42 @@ namespace ClientSide
                 default:
                     Console.WriteLine("There has been an error");
                     break;
+            }
+        }
+
+        public void Login()
+        {
+            string username;
+            string password;
+
+            Console.WriteLine("Enter username:");
+            username = Console.ReadLine();
+
+            Console.WriteLine("Enter password:");
+            password = ReadPassword();
+
+            Console.WriteLine("Sending data to server...");
+            Net.sendMsg(Comm.GetStream(), new UserMsg("Login", username, password));
+
+            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+
+            Console.WriteLine(answer);
+
+            if (answer.Success)
+            {
+                Menu();
+            }
+            else
+            {
+                Console.Write("Try again ? (y/n) ");
+                string ans = Console.ReadLine();
+                while (!(ans.Equals("y") || ans.Equals("n")))
+                {
+                    Console.Write("Please type y (yes) or n (no) ");
+                    ans = Console.ReadLine();
+                }
+                if (ans.Equals("y")) Login();
+                else Menu();
             }
         }
 
@@ -58,7 +95,7 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new User(username, password));
+            Net.sendMsg(Comm.GetStream(), new UserMsg("Register", username, password));
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
 

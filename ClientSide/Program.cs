@@ -6,7 +6,7 @@ namespace ClientSide
     {
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(1000);
 
 
             Client client = new Client("127.0.0.1", 8976);
