@@ -35,6 +35,27 @@ namespace Communication
     }
 
     [Serializable]
+    public class Topic : Message
+    {
+        private string _action;
+        private string _title;
+
+        string Message.Action { get => _action; }
+        public string Title { get => _title; }
+
+        public Topic(string action, string title)
+        {
+            _action = action;
+            _title = title;
+        }
+
+        public override string ToString()
+        {
+            return ("[" + _action + "] " + _title);
+        }
+    }
+
+    [Serializable]
     public class Answer : Message
     {
         private string _action;

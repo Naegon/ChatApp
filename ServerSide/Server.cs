@@ -11,6 +11,7 @@ namespace ServerSide
     {
         private int port;
         private static UserList userList;
+        private static TopicList topicList;
 
         public Server(int port)
         {
@@ -22,16 +23,27 @@ namespace ServerSide
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 
+            //CreateUsers();
+            //CreateTopics();
+
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
 
             Console.WriteLine("User list: ");
             userList.Print();
 
+            Console.WriteLine();
+
+            if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
+            else topicList = new TopicList();
+
+            Console.WriteLine("Topic list: ");
+            topicList.Print();
+
             while (true)
             {
                 TcpClient comm = l.AcceptTcpClient();
-                Console.WriteLine("Connection established @" + comm);
+                Console.WriteLine("\nConnection established @" + comm);
                 new Thread(new Receiver(comm).doOperation).Start();
             }
         }
@@ -112,6 +124,28 @@ namespace ServerSide
                     Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
                 }
             }
+        }
+
+        public static void CreateUsers()
+        {
+            UserList userList = new UserList();
+            userList.Add(new User("None", "Bob", "qwe"));
+            userList.Add(new User("None", "Seb", "qwe"));
+            userList.Add(new User("None", "Léo", "qwe"));
+            userList.Add(new User("None", "Pam", "qwe"));
+
+            userList.Serialize();
+        }
+
+        public static void CreateTopics()
+        {
+            TopicList topicList = new TopicList();
+            topicList.Add(new Topic("None", "Music"));
+            topicList.Add(new Topic("None", "Sport"));
+            topicList.Add(new Topic("None", "Art"));
+            topicList.Add(new Topic("None", "Cinema"));
+
+            topicList.Serialize();
         }
     }
 }
