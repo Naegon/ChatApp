@@ -59,23 +59,23 @@ namespace ServerSide
             {
                 while (true)
                 {
-                    Message message = Net.rcvMsg(comm.GetStream());
-                    Console.WriteLine("\nReceiving data: \n" + message.ToString());
+                    Request request = (Request)Net.rcvMsg(comm.GetStream());
+                    Console.WriteLine("\nReceiving data: \n" + request.ToString());
 
-                    switch (message.Action)
+                    switch (request.Action)
                     {
                         case "Login":
-                            Login((User)message);
+                            Login((User)request);
                             break;
                         case "Register":
-                            Register((User)message);
+                            Register((User)request);
                             break;
                         case "GetTopicList":
                             Console.WriteLine("Sending back topic list");
-                            Net.sendMsg(comm.GetStream(), new TopicListMsg("Answer", topicList));
+                            Net.sendMsg(comm.GetStream(), new TopicListMsg(topicList));
                             break;
                         case "Join":
-                            DisplayTopic((Answer)message);
+                            DisplayTopic((Demand)request);
                             break;
                         default:
                             Console.WriteLine("To be implemented");
@@ -130,11 +130,11 @@ namespace ServerSide
                 }
             }
 
-            public void DisplayTopic(Answer answer)
+            public void DisplayTopic(Demand demand)
             {
                 foreach (Topic topic in topicList)
                 {
-                    if (topic.Title.Equals(answer.Message))
+                    if (topic.Title.Equals(demand.Title))
                     {
                         Net.sendMsg(comm.GetStream(), topic);
                         break;
@@ -164,19 +164,19 @@ namespace ServerSide
         {
             List<Chat> chatMusique = new List<Chat>
             {
-                new Chat("None", userList[0], "Salut Seb"),
-                new Chat("None", userList[1], "Oh tient, salut bob !"),
-                new Chat("None", userList[0], "Qui d'autre est là ?"),
-                new Chat("None", userList[3], "Il y a moi !"),
-                new Chat("None", userList[1], "Salut Pam !"),
+                new Chat(userList[0], "Salut Seb"),
+                new Chat(userList[1], "Oh tient, salut bob !"),
+                new Chat(userList[0], "Qui d'autre est là ?"),
+                new Chat(userList[3], "Il y a moi !"),
+                new Chat(userList[1], "Salut Pam !"),
             };
 
             TopicList topicList = new TopicList
             {
-                new Topic("None", "Music", chatMusique),
-                new Topic("None", "Sport"),
-                new Topic("None", "Art"),
-                new Topic("None", "Cinema")
+                new Topic("Music", chatMusique),
+                new Topic("Sport"),
+                new Topic("Art"),
+                new Topic("Cinema")
             };
 
             topicList.Serialize();

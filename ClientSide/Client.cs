@@ -122,7 +122,7 @@ namespace ClientSide
         public void ChooseTopic()
         {
             Console.WriteLine("Asking for Topic list...");
-            Net.sendMsg(Comm.GetStream(), new Message("GetTopicList"));
+            Net.sendMsg(Comm.GetStream(), new Request("GetTopicList"));
 
             TopicListMsg topicList = (TopicListMsg)Net.rcvMsg(Comm.GetStream());
 
@@ -141,7 +141,7 @@ namespace ClientSide
                 choice = Console.ReadLine();
             } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, topicList.Titles.Count.ToString()) <= 0));
 
-            Answer choosedTopic = new Answer("Join", true, topicList.Titles[Convert.ToInt32(choice) - 1]);
+            Demand choosedTopic = new Demand("Join", topicList.Titles[Convert.ToInt32(choice) - 1]);
             Net.sendMsg(Comm.GetStream(), choosedTopic);
 
             Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());

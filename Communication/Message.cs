@@ -7,45 +7,7 @@ namespace Communication
     [Serializable]
     public class Message
     {
-        protected string _action;
-        public string Action { get => _action; set => _action = value; }
-
-        public Message()
-        {
-            _action = "";
-        }
-
-        public Message(string action)
-        {
-            _action = action;
-        }
-
-        public override string ToString()
-        {
-            return "[" + _action + "]";
-        }
-    }
-
-    [Serializable]
-    public class User : Message
-    {
-        private string _username;
-        private string _password;
-
-        public string Username { get => _username; }
-        public string Password { get => _password; }
-
-        public User(string action, string username, string password) : base(action)
-        {
-            _action = action;
-            _username = username;
-            _password = password;
-        }
-
-        public override string ToString()
-        {
-            return ("[" + _action + "] Username: " + _username + " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)));
-        }
+        public Message() { }
     }
 
     [Serializable]
@@ -57,16 +19,14 @@ namespace Communication
         public string Title { get => _title; }
         public List<Chat> Chats { get => _chats; }
 
-        public Topic(string action, string title) : base(action)
+        public Topic(string title)
         {
-            _action = action;
             _title = title;
             _chats = new List<Chat>();
         }
 
-        public Topic(string action, string title, List<Chat> chats) : base(action)
+        public Topic(string title, List<Chat> chats)
         {
-            _action = action;
             _title = title;
             _chats = chats;
         }
@@ -85,11 +45,10 @@ namespace Communication
         private List<string> _titles;
         public List<string> Titles { get => _titles; }
 
-        public TopicListMsg(string action, TopicList topicList) : base(action)
+        public TopicListMsg(TopicList topicList)
         {
-            _action = action;
             _titles = new List<string>();
-            foreach(Topic topic in topicList)
+            foreach (Topic topic in topicList)
             {
                 _titles.Add(topic.Title);
             }
@@ -97,8 +56,8 @@ namespace Communication
 
         public override string ToString()
         {
-            string _out = "[" + _action + "] Topic list:\n";
-            foreach(string title in _titles)
+            string _out = "Topic list:\n";
+            foreach (string title in _titles)
             {
                 _out += "  - " + title + "\n";
             }
@@ -115,9 +74,8 @@ namespace Communication
         public User Sender { get => _sender; }
         public string Content { get => _content; }
 
-        public Chat(string action, User sender, string content) : base (action)
+        public Chat(User sender, string content)
         {
-            _action = action;
             _sender = sender;
             _content = content;
         }
@@ -140,21 +98,13 @@ namespace Communication
 
         public Answer(bool error, string message)
         {
-            _action = "Message";
-            _success = error;
-            _message = message;
-        }
-
-        public Answer(string action, bool error, string message)
-        {
-            _action = action;
             _success = error;
             _message = message;
         }
 
         public override string ToString()
         {
-            return ("[" + _action + "] " + (_success ? "Success: " : "Error: ") + _message);
+            return ((_success ? "Success: " : "Error: ") + _message);
         }
     }
 }
