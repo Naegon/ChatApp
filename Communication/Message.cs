@@ -19,6 +19,12 @@ namespace Communication
         public string Title { get => _title; }
         public List<Chat> Chats { get => _chats; }
 
+        public Topic()
+        {
+            _title = "";
+            _chats = new List<Chat>();
+        }
+
         public Topic(string title)
         {
             _title = title;

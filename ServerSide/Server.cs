@@ -24,7 +24,7 @@ namespace ServerSide
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 
-            CreateUsers();
+            //CreateUsers();
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
 
@@ -32,7 +32,7 @@ namespace ServerSide
 
             Console.WriteLine();
 
-            CreateTopics();
+            //CreateTopics();
             if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
             else topicList = new TopicList();
 
@@ -49,6 +49,7 @@ namespace ServerSide
         class Receiver
         {
             private TcpClient comm;
+            private User _currentUser;
 
             public Receiver(TcpClient s)
             {
@@ -92,6 +93,7 @@ namespace ServerSide
                     {
                         if (user.Password.Equals(userMsg.Password)) {
                             Console.WriteLine("Success: Login succesfully");
+                            _currentUser = user;
                             Net.sendMsg(comm.GetStream(), new Answer(true, "Login succesfully"));
                         }
                         else
@@ -126,23 +128,33 @@ namespace ServerSide
                     userList.Serialize();
 
                     Console.WriteLine("Success: New user added");
+                    _currentUser = userMsg;
                     Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
                 }
             }
 
             public void DisplayTopic(Demand demand)
             {
+                Topic currentTopic = new Topic();
                 foreach (Topic topic in topicList)
                 {
                     if (topic.Title.Equals(demand.Title))
                     {
+                        currentTopic = topic;
                         Net.sendMsg(comm.GetStream(), topic);
                         break;
                     }
                     else
                     {
                         Net.sendMsg(comm.GetStream(), new Answer(false, "This topic doeas not exist"));
+                        return;
                     }
+                }
+
+                while (true)
+                {
+                    Console.WriteLine(((Chat)Net.rcvMsg(comm.GetStream())).Content);
+                    //currentTopic.Chats.Add((Chat)Net.rcvMsg(comm.GetStream()));
                 }
             }
         }

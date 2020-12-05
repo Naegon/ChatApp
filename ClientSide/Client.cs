@@ -7,6 +7,8 @@ namespace ClientSide
     public class Client
     {
         private TcpClient _comm;
+        private User _currentUser;
+
         public TcpClient Comm { get => _comm; set => _comm = value; }
 
         public Client(string hostname, int port)
@@ -58,7 +60,8 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new User("Login", username, password));
+            User user = new User("Login", username, password);
+            Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
 
@@ -66,6 +69,7 @@ namespace ClientSide
 
             if (answer.Success)
             {
+                _currentUser = user;
                 ChooseTopic();
             }
             else
@@ -95,7 +99,8 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            Net.sendMsg(Comm.GetStream(), new User("Register", username, password));
+            User user = new User("Register", username, password);
+            Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
 
@@ -104,7 +109,8 @@ namespace ClientSide
             if (answer.Success)
             {
                 Console.WriteLine("Login");
-                Menu();
+                _currentUser = user;
+                ChooseTopic();
             } else
             {
                 Console.Write("Try again ? (y/n) ");
@@ -146,6 +152,12 @@ namespace ClientSide
 
             Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
             Console.WriteLine(topic);
+
+            while (true)
+            {
+                Console.Write("[" + _currentUser.Username + "] ");
+                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser, Console.ReadLine()));
+            }
         }
 
         public static string ReadPassword()
