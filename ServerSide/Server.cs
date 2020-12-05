@@ -24,13 +24,12 @@ namespace ServerSide
             l.Start();
 
             //CreateUsers();
-            CreateTopics();
+            //CreateTopics();
 
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
 
-            Console.WriteLine("User list: ");
-            userList.Print();
+            Console.WriteLine(userList);
 
             Console.WriteLine();
 
@@ -72,6 +71,7 @@ namespace ServerSide
                             Register((User)message);
                             break;
                         case "GetTopicList":
+                            Console.WriteLine("Sending back topic list");
                             Net.sendMsg(comm.GetStream(), new TopicListMsg("Answer", topicList));
                             break;
                         default:
@@ -83,7 +83,7 @@ namespace ServerSide
 
             public void Login(User userMsg)
             {
-                foreach (User user in userList.all)
+                foreach (User user in userList)
                 {
                     if (user.Username.Equals(userMsg.Username))
                     {
@@ -106,7 +106,7 @@ namespace ServerSide
             public void Register(User userMsg)
             {
                 bool isValid = true;
-                foreach (User user in userList.all)
+                foreach (User user in userList)
                 {
                     if (user.Username.Equals(userMsg.Username))
                     {
@@ -130,22 +130,26 @@ namespace ServerSide
 
         public static void CreateUsers()
         {
-            UserList userList = new UserList();
-            userList.Add(new User("None", "Bob", "qwe"));
-            userList.Add(new User("None", "Seb", "qwe"));
-            userList.Add(new User("None", "Léo", "qwe"));
-            userList.Add(new User("None", "Pam", "qwe"));
+            UserList userList = new UserList
+            {
+                new User("None", "Bob", "qwe"),
+                new User("None", "Seb", "qwe"),
+                new User("None", "Léo", "qwe"),
+                new User("None", "Pam", "qwe")
+            };
 
             userList.Serialize();
         }
 
         public static void CreateTopics()
         {
-            TopicList topicList = new TopicList();
-            topicList.Add(new Topic("None", "Music"));
-            topicList.Add(new Topic("None", "Sport"));
-            topicList.Add(new Topic("None", "Art"));
-            topicList.Add(new Topic("None", "Cinema"));
+            TopicList topicList = new TopicList
+            {
+                new Topic("None", "Music"),
+                new Topic("None", "Sport"),
+                new Topic("None", "Art"),
+                new Topic("None", "Cinema")
+            };
 
             topicList.Serialize();
         }

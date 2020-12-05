@@ -127,10 +127,11 @@ namespace ClientSide
             TopicList topicList = ((TopicListMsg)Net.rcvMsg(Comm.GetStream())).TopicList;
 
             int i = 1;
-            Console.WriteLine("Please choose one of the listed topic: ");
+            Console.WriteLine("\nPlease choose one of the listed topic: ");
             foreach (Topic topic in topicList)
             {
-                Console.WriteLine(i + ". " + topic);
+                Console.WriteLine(i + ". " + topic.Title);
+                i++;
             }
         }
 

@@ -2,25 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Communication;
 
-namespace ServerSide
+namespace Communication
 {
     [Serializable]
-    public class UserList
-    {
-        public List<User> all;
-        
-        public UserList()
-        {
-            all = new List<User>();
-        }
-
-        public void Add(User user)
-        {
-            all.Add(user);
-        }
-
+    public class UserList : List<User>
+    {        
         public void Serialize()
         {
             Stream stream = File.Open("UserList.txt", FileMode.Create);
@@ -40,10 +27,15 @@ namespace ServerSide
             return userList;
         }
 
-        public void Print()
+        public override string ToString()
         {
-            if (all.Count > 0) all.ForEach(User => Console.WriteLine(User));
-            else Console.WriteLine("No user yet");
+            if (Count > 0)
+            {
+                string outStr = "User list:\n";
+                ForEach(user => outStr += "  - " + user + "\n");
+                return outStr;
+            }
+            else return "No user yet";
         }
     }
 }
