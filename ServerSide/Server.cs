@@ -144,17 +144,18 @@ namespace ServerSide
                         Net.sendMsg(comm.GetStream(), topic);
                         break;
                     }
-                    else
-                    {
-                        Net.sendMsg(comm.GetStream(), new Answer(false, "This topic doeas not exist"));
-                        return;
-                    }
+                }
+
+                if (currentTopic == null)
+                {
+                    Net.sendMsg(comm.GetStream(), new Answer(false, "This topic does not exist"));
+                    return;
                 }
 
                 while (true)
                 {
-                    Console.WriteLine(((Chat)Net.rcvMsg(comm.GetStream())).Content);
-                    //currentTopic.Chats.Add((Chat)Net.rcvMsg(comm.GetStream()));
+                    currentTopic.Chats.Add((Chat)Net.rcvMsg(comm.GetStream()));
+                    topicList.Serialize();
                 }
             }
         }
@@ -183,10 +184,19 @@ namespace ServerSide
                 new Chat(userList[1], "Salut Pam !"),
             };
 
+            List<Chat> chatSport = new List<Chat>
+            {
+                new Chat(userList[2], "Demain c'est biathlon !"),
+                new Chat(userList[3], "Oh cool ! Quelle heure ?"),
+                new Chat(userList[2], "14H30"),
+                new Chat(userList[2], "Euh non, 15H !"),
+                new Chat(userList[3], "Super, c'est noté !"),
+            };
+
             TopicList topicList = new TopicList
             {
                 new Topic("Music", chatMusique),
-                new Topic("Sport"),
+                new Topic("Sport", chatSport),
                 new Topic("Art"),
                 new Topic("Cinema")
             };

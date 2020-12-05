@@ -35,6 +35,11 @@ namespace Communication
         {
             _title = title;
         }
+
+        public override string ToString()
+        {
+            return "[" + _action + "] " + _title;
+        }
     }
 
     [Serializable]
