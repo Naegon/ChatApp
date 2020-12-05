@@ -124,15 +124,28 @@ namespace ClientSide
             Console.WriteLine("Asking for Topic list...");
             Net.sendMsg(Comm.GetStream(), new Message("GetTopicList"));
 
-            TopicList topicList = ((TopicListMsg)Net.rcvMsg(Comm.GetStream())).TopicList;
+            TopicListMsg topicList = (TopicListMsg)Net.rcvMsg(Comm.GetStream());
 
             int i = 1;
             Console.WriteLine("\nPlease choose one of the listed topic: ");
-            foreach (Topic topic in topicList)
+            foreach (string title in topicList.Titles)
             {
-                Console.WriteLine(i + ". " + topic.Title);
+                Console.WriteLine(i + ". " + title);
                 i++;
             }
+
+            string choice;
+            do
+            {
+                Console.Write("\nPlease choose an option: ");
+                choice = Console.ReadLine();
+            } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, topicList.Titles.Count.ToString()) <= 0));
+
+            Answer choosedTopic = new Answer("Join", true, topicList.Titles[Convert.ToInt32(choice) - 1]);
+            Net.sendMsg(Comm.GetStream(), choosedTopic);
+
+            Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
+            Console.WriteLine(topic);
         }
 
         public static string ReadPassword()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -23,9 +24,7 @@ namespace ServerSide
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 
-            //CreateUsers();
-            //CreateTopics();
-
+            CreateUsers();
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
 
@@ -33,6 +32,7 @@ namespace ServerSide
 
             Console.WriteLine();
 
+            CreateTopics();
             if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
             else topicList = new TopicList();
 
@@ -73,6 +73,9 @@ namespace ServerSide
                         case "GetTopicList":
                             Console.WriteLine("Sending back topic list");
                             Net.sendMsg(comm.GetStream(), new TopicListMsg("Answer", topicList));
+                            break;
+                        case "Join":
+                            DisplayTopic((Answer)message);
                             break;
                         default:
                             Console.WriteLine("To be implemented");
@@ -126,6 +129,22 @@ namespace ServerSide
                     Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
                 }
             }
+
+            public void DisplayTopic(Answer answer)
+            {
+                foreach (Topic topic in topicList)
+                {
+                    if (topic.Title.Equals(answer.Message))
+                    {
+                        Net.sendMsg(comm.GetStream(), topic);
+                        break;
+                    }
+                    else
+                    {
+                        Net.sendMsg(comm.GetStream(), new Answer(false, "This topic doeas not exist"));
+                    }
+                }
+            }
         }
 
         public static void CreateUsers()
@@ -143,9 +162,18 @@ namespace ServerSide
 
         public static void CreateTopics()
         {
+            List<Chat> chatMusique = new List<Chat>
+            {
+                new Chat("None", userList[0], "Salut Seb"),
+                new Chat("None", userList[1], "Oh tient, salut bob !"),
+                new Chat("None", userList[0], "Qui d'autre est là ?"),
+                new Chat("None", userList[3], "Il y a moi !"),
+                new Chat("None", userList[1], "Salut Pam !"),
+            };
+
             TopicList topicList = new TopicList
             {
-                new Topic("None", "Music"),
+                new Topic("None", "Music", chatMusique),
                 new Topic("None", "Sport"),
                 new Topic("None", "Art"),
                 new Topic("None", "Cinema")
