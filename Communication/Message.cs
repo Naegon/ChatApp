@@ -80,7 +80,7 @@ namespace Communication
         public override string ToString()
         {
             string _out = "[" + _action + "] Topic list:\n";
-            foreach(Topic topic in _topicList.all)
+            foreach(Topic topic in _topicList)
             {
                 _out += "  - " + topic.Title + "\n";
             }

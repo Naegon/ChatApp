@@ -125,7 +125,13 @@ namespace ClientSide
             Net.sendMsg(Comm.GetStream(), new Message("GetTopicList"));
 
             TopicList topicList = ((TopicListMsg)Net.rcvMsg(Comm.GetStream())).TopicList;
-            topicList.Print();
+
+            int i = 1;
+            Console.WriteLine("Please choose one of the listed topic: ");
+            foreach (Topic topic in topicList)
+            {
+                Console.WriteLine(i + ". " + topic);
+            }
         }
 
         public static string ReadPassword()

@@ -6,20 +6,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Communication
 {
     [Serializable]
-    public class TopicList
+    public class TopicList : List<Topic>
     {
-        public List<Topic> all;
-
-        public TopicList()
-        {
-            all = new List<Topic>();
-        }
-
-        public void Add(Topic topic)
-        {
-            all.Add(topic);
-        }
-
         public void Serialize()
         {
             Stream stream = File.Open("TopicList.txt", FileMode.Create);
@@ -39,10 +27,15 @@ namespace Communication
             return topicList;
         }
 
-        public void Print()
+        public override string ToString()
         {
-            if (all.Count > 0) all.ForEach(Topic => Console.WriteLine(Topic));
-            else Console.WriteLine("No topic yet");
+            if (Count > 0)
+            {
+                string outStr = "Topic list:\n";
+                ForEach(Topic => outStr += "  - " + Topic + "\n");
+                return outStr;
+            }
+            else return "No topic yet";
         }
     }
 }

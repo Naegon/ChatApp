@@ -24,7 +24,7 @@ namespace ServerSide
             l.Start();
 
             //CreateUsers();
-            //CreateTopics();
+            CreateTopics();
 
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
@@ -37,8 +37,7 @@ namespace ServerSide
             if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
             else topicList = new TopicList();
 
-            Console.WriteLine("Topic list: ");
-            topicList.Print();
+            Console.WriteLine(topicList);
 
             while (true)
             {
