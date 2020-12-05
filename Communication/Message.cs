@@ -3,25 +3,38 @@ using System.Linq;
 
 namespace Communication
 {
-    public interface Message
+    [Serializable]
+    public class Message
     {
-        string Action { get; }
-        string ToString();
+        protected string _action;
+        public string Action { get => _action; }
 
+        public Message()
+        {
+            _action = "";
+        }
+
+        public Message(string action)
+        {
+            _action = action;
+        }
+
+        public override string ToString()
+        {
+            return "[" + _action + "]";
+        }
     }
 
     [Serializable]
     public class User : Message
     {
-        private string _action;
         private string _username;
         private string _password;
 
-        string Message.Action { get => _action; }
         public string Username { get => _username; }
         public string Password { get => _password; }
 
-        public User(string action, string username, string password)
+        public User(string action, string username, string password) : base(action)
         {
             _action = action;
             _username = username;
@@ -37,13 +50,10 @@ namespace Communication
     [Serializable]
     public class Topic : Message
     {
-        private string _action;
         private string _title;
-
-        string Message.Action { get => _action; }
         public string Title { get => _title; }
 
-        public Topic(string action, string title)
+        public Topic(string action, string title) : base(action)
         {
             _action = action;
             _title = title;
@@ -56,13 +66,34 @@ namespace Communication
     }
 
     [Serializable]
+    public class TopicListMsg : Message
+    {
+        private TopicList _topicList;
+        public TopicList TopicList { get => _topicList; }
+
+        public TopicListMsg(string action, TopicList topiclist) : base(action)
+        {
+            _action = action;
+            _topicList = topiclist;
+        }
+
+        public override string ToString()
+        {
+            string _out = "[" + _action + "] Topic list:\n";
+            foreach(Topic topic in _topicList.all)
+            {
+                _out += "  - " + topic.Title + "\n";
+            }
+            return _out;
+        }
+    }
+
+    [Serializable]
     public class Answer : Message
     {
-        private string _action;
         private bool _success;
         private string _message;
 
-        public string Action { get => _action; }
         public bool Success { get => _success; }
         public string Message { get => _message; }
 

@@ -66,7 +66,7 @@ namespace ClientSide
 
             if (answer.Success)
             {
-                Menu();
+                ChooseTopic();
             }
             else
             {
@@ -117,6 +117,15 @@ namespace ClientSide
                 if (ans.Equals("y")) Register();
                 else Menu();
             }
+        }
+
+        public void ChooseTopic()
+        {
+            Console.WriteLine("Asking for Topic list...");
+            Net.sendMsg(Comm.GetStream(), new Message("GetTopicList"));
+
+            TopicList topicList = ((TopicListMsg)Net.rcvMsg(Comm.GetStream())).TopicList;
+            topicList.Print();
         }
 
         public static string ReadPassword()

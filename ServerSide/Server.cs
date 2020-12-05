@@ -72,6 +72,9 @@ namespace ServerSide
                         case "Register":
                             Register((User)message);
                             break;
+                        case "GetTopicList":
+                            Net.sendMsg(comm.GetStream(), new TopicListMsg("Answer", topicList));
+                            break;
                         default:
                             Console.WriteLine("To be implemented");
                             break;
