@@ -47,20 +47,25 @@ namespace Communication
     {
         private string _username;
         private string _password;
+        private string _topic;
 
         public string Username { get => _username; }
         public string Password { get => _password; }
+        public string Topic { get => _topic; set => _topic = value; }
 
         public User(string action, string username, string password) : base(action)
         {
             _action = action;
             _username = username;
             _password = password;
+            _topic = "";
         }
 
         public override string ToString()
         {
-            return ("[" + _action + "] Username: " + _username + " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)));
+            return ("[" + _action + "] Username: " + _username +
+                " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)) +
+                (!_topic.Equals("")?" - Current Topic: ":"") + _topic);
         }
     }
 }

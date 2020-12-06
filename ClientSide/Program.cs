@@ -10,6 +10,7 @@ namespace ClientSide
 
 
             Client client = new Client("127.0.0.1", 8976);
+
             client.Menu();
         }
     }

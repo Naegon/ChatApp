@@ -146,6 +146,16 @@ namespace ServerSide
                     }
                 }
 
+                foreach (User user in userList)
+                {
+                    if (user == _currentUser)
+                    {
+                        _currentUser.Topic = currentTopic.Title;
+                        user.Topic = currentTopic.Title;
+                        break;
+                    }
+                }
+
                 if (currentTopic == null)
                 {
                     Net.sendMsg(comm.GetStream(), new Answer(false, "This topic does not exist"));
@@ -154,7 +164,18 @@ namespace ServerSide
 
                 while (true)
                 {
-                    currentTopic.Chats.Add((Chat)Net.rcvMsg(comm.GetStream()));
+                    Chat chat = (Chat)Net.rcvMsg(comm.GetStream());
+                    Console.WriteLine(chat);
+                    currentTopic.Chats.Add(chat);
+
+                    foreach (User user in userList)
+                    {
+                        if (user.Topic == currentTopic.Title)
+                        {
+                            Console.WriteLine("Sending chat to " + user.Username);
+                            Net.sendMsg(comm.GetStream(), chat);
+                        }
+                    }
                     topicList.Serialize();
                 }
             }

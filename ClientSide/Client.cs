@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Threading;
 using Communication;
 
 namespace ClientSide
@@ -153,6 +154,16 @@ namespace ClientSide
             Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
             Console.WriteLine(topic);
 
+
+            new Thread(SendChat).Start();
+            while (true)
+            {
+                Console.WriteLine((Chat)Net.rcvMsg(Comm.GetStream()));
+            }
+        }
+
+        private void SendChat()
+        {
             while (true)
             {
                 Console.Write("[" + _currentUser.Username + "] ");
