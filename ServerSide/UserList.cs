@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Communication
+namespace ServerSide
 {
     [Serializable]
     public class UserList : List<User>
-    {        
+    {
         public void Serialize()
         {
+            foreach(User user in this) { user.Topic = ""; }
+
             Stream stream = File.Open("UserList.txt", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(stream, this);

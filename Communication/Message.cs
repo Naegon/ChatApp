@@ -74,13 +74,13 @@ namespace Communication
     [Serializable]
     public class Chat : Message
     {
-        private User _sender;
+        private string _sender;
         private string _content;
 
-        public User Sender { get => _sender; }
+        public string Sender { get => _sender; }
         public string Content { get => _content; }
 
-        public Chat(User sender, string content)
+        public Chat(string sender, string content)
         {
             _sender = sender;
             _content = content;
@@ -88,7 +88,7 @@ namespace Communication
 
         public override string ToString()
         {
-            return "\n[" + _sender.Username + "] " + _content;
+            return "\n[" + _sender + "] " + _content;
         }
     }
 

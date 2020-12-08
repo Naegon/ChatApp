@@ -8,7 +8,7 @@ namespace ClientSide
     public class Client
     {
         private TcpClient _comm;
-        private User _currentUser;
+        private UserMsg _currentUser;
 
         public TcpClient Comm { get => _comm; set => _comm = value; }
 
@@ -61,7 +61,7 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            User user = new User("Login", username, password);
+            UserMsg user = new UserMsg("Login", username, password);
             Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
@@ -100,7 +100,7 @@ namespace ClientSide
             password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            User user = new User("Register", username, password);
+            UserMsg user = new UserMsg("Register", username, password);
             Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
@@ -167,7 +167,7 @@ namespace ClientSide
             while (true)
             {
                 Console.Write("[" + _currentUser.Username + "] ");
-                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser, Console.ReadLine()));
+                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, Console.ReadLine()));
             }
         }
 

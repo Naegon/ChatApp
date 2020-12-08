@@ -24,7 +24,7 @@ namespace ServerSide
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 
-            //CreateUsers();
+            CreateUsers();
             if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
             else userList = new UserList();
 
@@ -32,7 +32,7 @@ namespace ServerSide
 
             Console.WriteLine();
 
-            //CreateTopics();
+            CreateTopics();
             if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
             else topicList = new TopicList();
 
@@ -66,10 +66,10 @@ namespace ServerSide
                     switch (request.Action)
                     {
                         case "Login":
-                            Login((User)request);
+                            Login((UserMsg)request);
                             break;
                         case "Register":
-                            Register((User)request);
+                            Register((UserMsg)request);
                             break;
                         case "GetTopicList":
                             Console.WriteLine("Sending back topic list");
@@ -85,7 +85,7 @@ namespace ServerSide
                 }
             }
 
-            public void Login(User userMsg)
+            public void Login(UserMsg userMsg)
             {
                 foreach (User user in userList)
                 {
@@ -93,7 +93,7 @@ namespace ServerSide
                     {
                         if (user.Password.Equals(userMsg.Password)) {
                             Console.WriteLine("Success: Login succesfully");
-                            _currentUser = user;
+                            _currentUser = new User(userMsg, comm);
                             Net.sendMsg(comm.GetStream(), new Answer(true, "Login succesfully"));
                         }
                         else
@@ -108,7 +108,7 @@ namespace ServerSide
                 Net.sendMsg(comm.GetStream(), new Answer(false, "No user with that username"));
             }
 
-            public void Register(User userMsg)
+            public void Register(UserMsg userMsg)
             {
                 bool isValid = true;
                 foreach (User user in userList)
@@ -124,11 +124,11 @@ namespace ServerSide
                 if (isValid)
                 {
                     Console.WriteLine("Creation of the new user...");
-                    userList.Add(userMsg);
+                    _currentUser = new User(userMsg, comm);
+                    userList.Add(_currentUser);
                     userList.Serialize();
 
                     Console.WriteLine("Success: New user added");
-                    _currentUser = userMsg;
                     Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
                 }
             }
@@ -173,7 +173,7 @@ namespace ServerSide
                         if (user.Topic == currentTopic.Title)
                         {
                             Console.WriteLine("Sending chat to " + user.Username);
-                            Net.sendMsg(comm.GetStream(), chat);
+                            Net.sendMsg(user.Comm.GetStream(), chat);
                         }
                     }
                     topicList.Serialize();
@@ -185,10 +185,10 @@ namespace ServerSide
         {
             UserList userList = new UserList
             {
-                new User("None", "Bob", "qwe"),
-                new User("None", "Seb", "qwe"),
-                new User("None", "Léo", "qwe"),
-                new User("None", "Pam", "qwe")
+                new User("Bob", "qwe"),
+                new User("Seb", "qwe"),
+                new User("Léo", "qwe"),
+                new User("Pam", "qwe")
             };
 
             userList.Serialize();
@@ -198,20 +198,20 @@ namespace ServerSide
         {
             List<Chat> chatMusique = new List<Chat>
             {
-                new Chat(userList[0], "Salut Seb"),
-                new Chat(userList[1], "Oh tient, salut bob !"),
-                new Chat(userList[0], "Qui d'autre est là ?"),
-                new Chat(userList[3], "Il y a moi !"),
-                new Chat(userList[1], "Salut Pam !"),
+                new Chat(userList[0].Username, "Salut Seb"),
+                new Chat(userList[1].Username, "Oh tient, salut bob !"),
+                new Chat(userList[0].Username, "Qui d'autre est là ?"),
+                new Chat(userList[3].Username, "Il y a moi !"),
+                new Chat(userList[1].Username, "Salut Pam !"),
             };
 
             List<Chat> chatSport = new List<Chat>
             {
-                new Chat(userList[2], "Demain c'est biathlon !"),
-                new Chat(userList[3], "Oh cool ! Quelle heure ?"),
-                new Chat(userList[2], "14H30"),
-                new Chat(userList[2], "Euh non, 15H !"),
-                new Chat(userList[3], "Super, c'est noté !"),
+                new Chat(userList[2].Username, "Demain c'est biathlon !"),
+                new Chat(userList[3].Username, "Oh cool ! Quelle heure ?"),
+                new Chat(userList[2].Username, "14H30"),
+                new Chat(userList[2].Username, "Euh non, 15H !"),
+                new Chat(userList[3].Username, "Super, c'est noté !"),
             };
 
             TopicList topicList = new TopicList
