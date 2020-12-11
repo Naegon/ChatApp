@@ -93,7 +93,8 @@ namespace ServerSide
                     {
                         if (user.Password.Equals(userMsg.Password)) {
                             Console.WriteLine("Success: Login succesfully");
-                            _currentUser = new User(userMsg, comm);
+                            user.Comm = comm;
+                            _currentUser = user;
                             Net.sendMsg(comm.GetStream(), new Answer(true, "Login succesfully"));
                         }
                         else
@@ -148,7 +149,7 @@ namespace ServerSide
 
                 foreach (User user in userList)
                 {
-                    if (user == _currentUser)
+                    if (user.Username.Equals(_currentUser.Username))
                     {
                         _currentUser.Topic = currentTopic.Title;
                         user.Topic = currentTopic.Title;
@@ -170,7 +171,7 @@ namespace ServerSide
 
                     foreach (User user in userList)
                     {
-                        if (user.Topic == currentTopic.Title)
+                        if (user.Topic == currentTopic.Title && !user.Username.Equals(_currentUser.Username))
                         {
                             Console.WriteLine("Sending chat to " + user.Username);
                             Net.sendMsg(user.Comm.GetStream(), chat);

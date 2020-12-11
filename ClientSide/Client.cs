@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using Communication;
@@ -154,20 +155,29 @@ namespace ClientSide
             Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
             Console.WriteLine(topic);
 
-
+            Console.Write("[" + _currentUser.Username + "] ");
             new Thread(SendChat).Start();
-            while (true)
-            {
-                Console.WriteLine((Chat)Net.rcvMsg(Comm.GetStream()));
-            }
+            new Thread(RcvChat).Start();
         }
 
         private void SendChat()
         {
             while (true)
             {
+                var msg = Console.ReadLine();
+                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
                 Console.Write("[" + _currentUser.Username + "] ");
-                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, Console.ReadLine()));
+            }
+        }
+
+        private void RcvChat()
+        {
+            while (true)
+            {
+                Chat chat = (Chat)Net.rcvMsg(Comm.GetStream());
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.WriteLine(chat);
+                Console.Write("[" + _currentUser.Username + "] ");
             }
         }
 

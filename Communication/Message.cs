@@ -39,8 +39,8 @@ namespace Communication
 
         public override string ToString()
         {
-            string strOut = _title + " (" + _chats.Count + " messages)";
-            _chats.ForEach(chat => strOut += chat);
+            string strOut = _title + " (" + _chats.Count + " messages)\n";
+            _chats.ForEach(chat => strOut += chat + "\n");
             return strOut;
         }
     }
@@ -88,7 +88,7 @@ namespace Communication
 
         public override string ToString()
         {
-            return "\n[" + _sender + "] " + _content;
+            return "[" + _sender + "] " + _content;
         }
     }
 

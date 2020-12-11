@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ClientSide
+﻿namespace ClientSide
 {
     class Program
     {
