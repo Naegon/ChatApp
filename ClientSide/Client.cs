@@ -41,6 +41,8 @@ namespace ClientSide
                     break;
                 case ("3"):
                     Console.WriteLine("Quit");
+                    Net.sendMsg(Comm.GetStream(), new Request("Quit"));
+                    Comm.Close();
                     break;
                 default:
                     Console.WriteLine("There has been an error");

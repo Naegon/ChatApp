@@ -18,7 +18,8 @@ namespace ServerSide
 
             public void Dispatch()
             {
-                while (true)
+                var loop = true;
+                while (loop)
                 {
                     Request request = (Request)Net.rcvMsg(comm.GetStream());
                     Console.WriteLine("\nReceiving data: \n" + request.ToString());
@@ -43,6 +44,9 @@ namespace ServerSide
                             break;
                         case "Join":
                             DisplayTopic((Demand)request);
+                            break;
+                        case "Quit":
+                            loop = false;
                             break;
                         default:
                             Console.WriteLine("To be implemented");
