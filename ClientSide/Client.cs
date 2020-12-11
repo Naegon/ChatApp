@@ -213,10 +213,10 @@ namespace ClientSide
 
             var target = Convert.ToInt32(choice);
 
-            if (target == userList.Usernames.Count + 1)  Menu();
+            if (target == userList.Usernames.Count + 1)  ChooseTopic();
             else
             {
-                Net.sendMsg(Comm.GetStream(), new Demand("privateMesage", userList.Usernames[target + 1]));
+                Net.sendMsg(Comm.GetStream(), new Demand("privateMesage", userList.Usernames[target - 1]));
             }
         }
 
