@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Sockets;
 using Communication;
 
-namespace ServerSide
+namespace Communication
 {
     [Serializable]
     public class User

@@ -75,6 +75,12 @@ namespace ServerSide
                             Console.WriteLine("Sending back topic list");
                             Net.sendMsg(comm.GetStream(), new TopicListMsg(topicList));
                             break;
+                        case "GetUserList":
+                            PrivateMessage();
+                            break;
+                        case "NewTopic":
+                            Console.WriteLine("To be implemented");
+                            break;
                         case "Join":
                             DisplayTopic((Demand)request);
                             break;
@@ -179,6 +185,26 @@ namespace ServerSide
                     }
                     topicList.Serialize();
                 }
+            }
+
+            private void PrivateMessage()
+            {
+                Console.WriteLine("Sending back user list");
+                Net.sendMsg(comm.GetStream(), new UserListMsg(userList, _currentUser));
+
+                Demand demand = (Demand)Net.rcvMsg(comm.GetStream());
+
+                User buddy = null;
+                foreach(User user in userList)
+                {
+                    if (user.Username.Equals(demand.Title))
+                    {
+                        buddy = user;
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Private message with " + buddy.Username);
             }
         }
 

@@ -72,6 +72,37 @@ namespace Communication
     }
 
     [Serializable]
+    public class UserListMsg : Message
+    {
+        private List<string> _usernames;
+        public List<string> Usernames { get => _usernames; }
+
+        public UserListMsg(UserList userList, User currentUser)
+        {
+            _usernames = new List<string>();
+            foreach (User user in userList)
+            {
+                if (user.Username != currentUser.Username)
+                {
+                    _usernames.Add(user.Username);
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            string _out = "User list:";
+            var i = 1;
+            foreach (string username in _usernames)
+            {
+                _out += "\n" + i + ". " + username;
+                i++;
+            }
+            return _out;
+        }
+    }
+
+    [Serializable]
     public class Chat : Message
     {
         private string _sender;

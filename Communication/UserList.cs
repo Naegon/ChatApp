@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ServerSide
+namespace Communication
 {
     [Serializable]
     public class UserList : List<User>
