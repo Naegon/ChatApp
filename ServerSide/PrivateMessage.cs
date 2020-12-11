@@ -10,7 +10,19 @@ namespace ServerSide
             private void PrivateMessage()
             {
                 Console.WriteLine("Sending back user list");
-                Net.sendMsg(comm.GetStream(), new UserListMsg(userList, _currentUser));
+
+                UserListMsg connected = new UserListMsg();
+                foreach (User user in userList)
+                {
+                    if (user.Comm != null && user.Username != _currentUser.Username)
+                    {
+                        connected.Usernames.Add(user.Username);
+                    }
+                }
+                
+                Net.sendMsg(comm.GetStream(), connected);
+
+                if (connected.Usernames.Count <= 0) return;
 
                 Demand demand = (Demand)Net.rcvMsg(comm.GetStream());
 
@@ -25,6 +37,13 @@ namespace ServerSide
                 }
 
                 Console.WriteLine("Private message with " + buddy.Username);
+
+                while (true)
+                {
+                    Chat chat = (Chat)Net.rcvMsg(comm.GetStream());
+                    Console.WriteLine(chat);
+                    Net.sendMsg(buddy.Comm.GetStream(), chat);
+                }
             }
         }
     }

@@ -33,10 +33,10 @@ namespace ClientSide
 
             var target = Convert.ToInt32(choice);
             if (target == 1) ChooseUser();
-            if (target == topicList.Titles.Count + 2)
+            else if (target == topicList.Titles.Count + 2)
             {
-                Request privateMessage = new Request("NewUser");
-                Net.sendMsg(Comm.GetStream(), privateMessage);
+                Request newTopic = new Request("NewTopic");
+                Net.sendMsg(Comm.GetStream(), newTopic);
             }
             else
             {
@@ -45,12 +45,11 @@ namespace ClientSide
 
                 Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
                 Console.WriteLine(topic);
+                Console.Write("[" + _currentUser.Username + "] ");
+
+                new Thread(SendChat).Start();
+                new Thread(RcvChat).Start();
             }
-
-
-            Console.Write("[" + _currentUser.Username + "] ");
-            new Thread(SendChat).Start();
-            new Thread(RcvChat).Start();
         }
     }
 }

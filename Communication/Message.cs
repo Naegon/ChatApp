@@ -77,6 +77,11 @@ namespace Communication
         private List<string> _usernames;
         public List<string> Usernames { get => _usernames; }
 
+        public UserListMsg()
+        {
+            _usernames = new List<string>();
+        }
+
         public UserListMsg(UserList userList, User currentUser)
         {
             _usernames = new List<string>();
@@ -93,6 +98,8 @@ namespace Communication
         {
             string _out = "User list:";
             var i = 1;
+            if (_usernames.Count <= 0) return "No connected user yet. Please try later.";
+
             foreach (string username in _usernames)
             {
                 _out += "\n" + i + ". " + username;
