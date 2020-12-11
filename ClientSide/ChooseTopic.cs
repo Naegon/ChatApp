@@ -8,6 +8,7 @@ namespace ClientSide
     {
         public void ChooseTopic()
         {
+            Console.Clear();
             Console.WriteLine("Asking for Topic list...");
             Net.sendMsg(Comm.GetStream(), new Request("GetTopicList"));
 

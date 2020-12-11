@@ -71,34 +71,5 @@ namespace ClientSide
                 Console.Write("[" + _currentUser.Username + "] ");
             }
         }
-
-
-        public static string ReadPassword()
-        {
-            string pwd = "";
-            while (true)
-            {
-                ConsoleKeyInfo i = Console.ReadKey(true);
-                if (i.Key == ConsoleKey.Enter)
-                {
-                    Console.WriteLine("\n");
-                    break;
-                }
-                else if (i.Key == ConsoleKey.Backspace)
-                {
-                    if (pwd.Length > 0)
-                    {
-                        pwd.Remove(pwd.Length - 1);
-                        Console.Write("\b \b");
-                    }
-                }
-                else if (i.KeyChar != '\u0000') // KeyChar == '\u0000' if the key pressed does not correspond to a printable character, e.g. F1, Pause-Break, etc
-                {
-                    pwd += i.KeyChar;
-                    Console.Write("*");
-                }
-            }
-            return pwd;
-        }
     }
 }

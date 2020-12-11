@@ -7,28 +7,27 @@ namespace ClientSide
     {
         public void Login()
         {
-            string username;
-            string password;
-
+            Console.Clear();
             Console.WriteLine("Enter username:");
-            username = Console.ReadLine();
+            string username = Console.ReadLine();
 
             Console.WriteLine("Enter password:");
-            password = ReadPassword();
+            string password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
             UserMsg user = new UserMsg("Login", username, password);
             Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
-
             Console.WriteLine(answer);
 
             if (answer.Success)
             {
                 _currentUser = user;
+                Console.Clear();
                 ChooseTopic();
             }
+
             else
             {
                 Console.Write("Try again ? (y/n) ");
@@ -46,29 +45,28 @@ namespace ClientSide
 
         public void Register()
         {
-            string username;
-            string password;
-
+            Console.Clear();
             Console.WriteLine("Choose an username:");
-            username = Console.ReadLine();
+            string username = Console.ReadLine();
 
             Console.WriteLine("Choose a secur password:");
-            password = ReadPassword();
+            string password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
             UserMsg user = new UserMsg("Register", username, password);
             Net.sendMsg(Comm.GetStream(), user);
 
             Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
-
             Console.WriteLine(answer);
 
             if (answer.Success)
             {
                 Console.WriteLine("Login");
                 _currentUser = user;
+                Console.Clear();
                 ChooseTopic();
             }
+
             else
             {
                 Console.Write("Try again ? (y/n) ");
@@ -81,6 +79,39 @@ namespace ClientSide
                 if (ans.Equals("y")) Register();
                 else Menu();
             }
+        }
+
+        public static string ReadPassword()
+        {
+            string pwd = "";
+            while (true)
+            {
+                ConsoleKeyInfo i = Console.ReadKey(true);
+
+                if (i.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("\n");
+                    break;
+                }
+
+                else if (i.Key == ConsoleKey.Backspace)
+                {
+                    if (pwd.Length > 0)
+                    {
+                        pwd.Remove(pwd.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                }
+
+                // KeyChar == '\u0000' if the key pressed does not correspond to a printable character, e.g. F1, Pause-Break, etc
+                else if (i.KeyChar != '\u0000')
+                {
+                    pwd += i.KeyChar;
+                    Console.Write("*");
+                }
+            }
+
+            return pwd;
         }
     }
 }
