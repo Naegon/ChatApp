@@ -7,7 +7,7 @@ namespace ServerSide
     {
         private partial class Receiver
         {
-            private void PrivateMessage()
+            private void GetUserList()
             {
                 Console.WriteLine("Sending back user list");
 
@@ -19,13 +19,14 @@ namespace ServerSide
                         connected.Usernames.Add(user.Username);
                     }
                 }
-                
+
                 Net.sendMsg(comm.GetStream(), connected);
 
                 if (connected.Usernames.Count <= 0) return;
+            }
 
-                Demand demand = (Demand)Net.rcvMsg(comm.GetStream());
-
+            private void PrivateMessage(Demand demand)
+            {
                 User buddy = null;
                 foreach (User user in userList)
                 {

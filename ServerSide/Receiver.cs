@@ -37,7 +37,10 @@ namespace ServerSide
                             Net.sendMsg(comm.GetStream(), new TopicListMsg(topicList));
                             break;
                         case "GetUserList":
-                            PrivateMessage();
+                            GetUserList();
+                            break;
+                        case "PrivateMessage":
+                            PrivateMessage((Demand)request);
                             break;
                         case "CreateTopic":
                             CreateTopic((Demand)request);
