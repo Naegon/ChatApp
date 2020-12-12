@@ -27,32 +27,32 @@ namespace ServerSide
 
                     switch (request.Action)
                     {
-                        case "Login":
+                        case Net.Action.Login:
                             Login((UserMsg)request);
                             break;
-                        case "Register":
+                        case Net.Action.Register:
                             Register((UserMsg)request);
                             break;
-                        case "GetTopicList":
+                        case Net.Action.GetTopicList:
                             Console.WriteLine("Sending back topic list");
                             Net.sendMsg(comm.GetStream(), new TopicListMsg(topicList));
                             break;
-                        case "GetUserList":
+                        case Net.Action.GetUserList:
                             GetUserList();
                             break;
-                        case "PrivateMessage":
+                        case Net.Action.PrivateMessage:
                             PrivateMessage((Demand)request);
                             break;
-                        case "CreateTopic":
+                        case Net.Action.CreateTopic:
                             CreateTopic((Demand)request);
                             break;
-                        case "Join":
+                        case Net.Action.Join:
                             DisplayTopic((Demand)request);
                             break;
-                        case "Disconnect":
+                        case Net.Action.Disconnect:
                             Disconnect();
                             break;
-                        case "Quit":
+                        case Net.Action.Quit:
                             loop = false;
                             break;
                         default:
@@ -60,8 +60,6 @@ namespace ServerSide
                             break;
                     }
                 }
-
-                Console.WriteLine("[Session ended]");
             }
         }
     }

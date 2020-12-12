@@ -10,7 +10,7 @@ namespace ClientSide
         {
             Console.Clear();
             Console.WriteLine("Asking for Topic list...");
-            Net.sendMsg(Comm.GetStream(), new Request("GetTopicList"));
+            Net.sendMsg(Comm.GetStream(), new Request(Net.Action.GetTopicList));
 
             TopicListMsg topicList = (TopicListMsg)Net.rcvMsg(Comm.GetStream());
 
@@ -41,7 +41,7 @@ namespace ClientSide
             else if (target == topicList.Titles.Count + 3)
             {
                 Console.WriteLine("Disconnecting...");
-                Net.sendMsg(Comm.GetStream(), new Request("Disconnect"));
+                Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
 
                 Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
                 if (answer.Success) Menu();
@@ -55,7 +55,7 @@ namespace ClientSide
             }
             else
             {
-                Demand choosedTopic = new Demand("Join", topicList.Titles[target - 2]);
+                Demand choosedTopic = new Demand(Net.Action.Join, topicList.Titles[target - 2]);
                 Net.sendMsg(Comm.GetStream(), choosedTopic);
 
                 Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
@@ -76,7 +76,7 @@ namespace ClientSide
             if (topicName.Equals("")) ChooseTopic();
             else
             {
-                Demand newTopic = new Demand("CreateTopic", topicName);
+                Demand newTopic = new Demand(Net.Action.CreateTopic, topicName);
                 Net.sendMsg(Comm.GetStream(), newTopic);
 
                 Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());

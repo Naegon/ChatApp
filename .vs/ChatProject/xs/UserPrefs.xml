@@ -1,30 +1,35 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerSide/Topic.cs">
     <Files>
-      <File FileName="ServerSide/Topic.cs" Line="55" Column="14" />
-      <File FileName="ServerSide/Receiver.cs" Line="27" Column="1" />
-      <File FileName="Communication/TopicList.cs" Line="37" Column="40" />
+      <File FileName="ClientSide/Logister.cs" Line="62" Column="32" />
+      <File FileName="Communication/Request.cs" Line="65" Column="1" />
+      <File FileName="Communication/Net.cs" Line="14" Column="27" />
+      <File FileName="Communication/Message.cs" Line="1" Column="1" />
+      <File FileName="Communication/TopicList.cs" Line="1" Column="1" />
+      <File FileName="Communication/User.cs" Line="1" Column="1" />
+      <File FileName="Communication/UserList.cs" Line="1" Column="1" />
+      <File FileName="ServerSide/Receiver.cs" Line="67" Column="1" />
+      <File FileName="ClientSide/Client.cs" Line="46" Column="34" />
+      <File FileName="ClientSide/PrivateMessage.cs" Line="44" Column="1" />
+      <File FileName="ClientSide/Program.cs" Line="1" Column="1" />
+      <File FileName="ClientSide/Topic.cs" Line="96" Column="1" />
+      <File FileName="ServerSide/Create.cs" Line="53" Column="1" />
+      <File FileName="ServerSide/Logister.cs" Line="1" Column="1" />
+      <File FileName="ServerSide/PrivateMessage.cs" Line="1" Column="1" />
       <File FileName="ServerSide/Program.cs" Line="1" Column="1" />
-      <File FileName="ServerSide/PrivateMessage.cs" Line="52" Column="1" />
-      <File FileName="ServerSide/Server.cs" Line="48" Column="1" />
-      <File FileName="ClientSide/Client.cs" Line="45" Column="34" />
-      <File FileName="ClientSide/Logister.cs" Line="22" Column="39" />
-      <File FileName="ServerSide/Logister.cs" Line="58" Column="14" />
-      <File FileName="ClientSide/PrivateMessage.cs" Line="51" Column="1" />
-      <File FileName="ClientSide/Topic.cs" Line="92" Column="14" />
-      <File FileName="ServerSide/Create.cs" Line="1" Column="1" />
-      <File FileName="ClientSide/Program.cs" Line="14" Column="39" />
+      <File FileName="ServerSide/Server.cs" Line="1" Column="1" />
+      <File FileName="ServerSide/Topic.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
-            <Node name="ClientSide" expanded="True">
-              <Node name="Program.cs" selected="True" />
-            </Node>
+            <Node name="ClientSide" expanded="True" />
             <Node name="Communication" expanded="True" />
-            <Node name="ServerSide" expanded="True" />
+            <Node name="ServerSide" expanded="True">
+              <Node name="Topic.cs" selected="True" />
+            </Node>
             <Node name="Tests" expanded="True" />
           </Node>
         </State>

@@ -19,6 +19,7 @@ namespace ClientSide
 
         public void Menu()
         {
+            Console.Clear();
             Console.WriteLine("\nWelcome!");
             Console.WriteLine("1. Login \n2. Register \n3. Quit");
 
@@ -41,7 +42,7 @@ namespace ClientSide
                     break;
                 case ("3"):
                     Console.WriteLine("Quit");
-                    Net.sendMsg(Comm.GetStream(), new Request("Quit"));
+                    Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
                     Comm.Close();
                     break;
                 default:

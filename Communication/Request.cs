@@ -7,15 +7,12 @@ namespace Communication
     [Serializable]
     public class Request : Message
     {
-        protected string _action;
-        public string Action { get => _action; set => _action = value; }
+        protected Net.Action _action;
+        public Net.Action Action { get => _action; set => _action = value; }
 
-        public Request()
-        {
-            _action = "";
-        }
+        public Request() { }
 
-        public Request(string action)
+        public Request(Net.Action action)
         {
             _action = action;
         }
@@ -32,7 +29,7 @@ namespace Communication
         private string _title;
         public string Title { get => _title; }
 
-        public Demand(string action, string title) : base(action)
+        public Demand(Net.Action action, string title) : base(action)
         {
             _title = title;
         }
@@ -52,7 +49,7 @@ namespace Communication
         public string Username { get => _username; }
         public string Password { get => _password; }
 
-        public UserMsg(string action, string username, string password) : base(action)
+        public UserMsg(Net.Action action, string username, string password) : base(action)
         {
             _action = action;
             _username = username;
