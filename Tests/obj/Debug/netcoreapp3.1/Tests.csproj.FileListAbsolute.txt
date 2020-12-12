@@ -2,3 +2,11 @@
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.AssemblyInfoInputs.cache
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.AssemblyInfo.cs
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.csproj.CoreCompileInputs.cache
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/bin/Debug/netcoreapp3.1/Tests.deps.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/bin/Debug/netcoreapp3.1/Tests.runtimeconfig.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/bin/Debug/netcoreapp3.1/Tests.runtimeconfig.dev.json
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/bin/Debug/netcoreapp3.1/Tests.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/bin/Debug/netcoreapp3.1/Tests.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.dll
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.pdb
+/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.genruntimeconfig.cache

@@ -21,8 +21,6 @@ namespace ServerSide
                 }
 
                 Net.sendMsg(comm.GetStream(), connected);
-
-                if (connected.Usernames.Count <= 0) return;
             }
 
             private void PrivateMessage(Demand demand)

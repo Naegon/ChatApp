@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Tests
@@ -7,30 +8,23 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ceci est un test 0\n");
+            Test test1 = new Test("Pomme");
+            Test test2 = new Test("Poire");
 
-            //for (int i=0; i<5; i++)
-            //{
-            //     Console.Write("\b \b");
-            //}
+            List<Test> tests = new List<Test> { test1, test2 };
+            foreach(Test test in tests)
+            {
+                Console.WriteLine(test);
+            }
 
-            //Console.Write(" [ooooooooooooooooooooo]");
-            //Console.SetCursorPosition(Console.CursorLeft - ("[ooooooooooooooooooooo]".Length), Console.CursorTop);
+            Test test3 = tests[1];
+            test3.Title = "Ça marche";
 
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-            //    Console.Write(" C");
-            //    Thread.Sleep(500);
-            //    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-            //    Console.Write(" c");
-            //    Thread.Sleep(500);
-            //}
-
-            Console.Write("Test 1 - ");
-            Console.WriteLine("Test 2");
-
+            Console.WriteLine("\n\n");
+            foreach (Test test in tests)
+            {
+                Console.WriteLine(test);
+            }
         }
     }
 }

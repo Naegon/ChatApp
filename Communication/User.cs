@@ -8,8 +8,8 @@ namespace Communication
     [Serializable]
     public class User
     {
-        private string _username;
-        private string _password;
+        private readonly string _username;
+        private readonly string _password;
         private string _topic;
         [NonSerialized] private TcpClient _comm;
 
@@ -17,6 +17,7 @@ namespace Communication
         public string Password { get => _password; }
         public string Topic { get => _topic; set => _topic = value; }
         public TcpClient Comm { get => _comm; set => _comm = value; }
+        public static int Count { get => Count; set => Count = value; }
 
         public User(string username, string password)
         {
@@ -36,9 +37,9 @@ namespace Communication
 
         public override string ToString()
         {
-            return ("Username: " + _username +
-                " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)) +
-                (!_topic.Equals("") ? " - Current Topic: " : "") + _topic);
+            return _username + " - Password: " +
+                string.Concat(Enumerable.Repeat("*", _password.Length)) +
+                (!_topic.Equals("") ? " - Current Topic: " : "") + _topic;
         }
     }
 }

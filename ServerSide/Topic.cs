@@ -20,15 +20,7 @@ namespace ServerSide
                     }
                 }
 
-                foreach (User user in userList)
-                {
-                    if (user.Username.Equals(_currentUser.Username))
-                    {
-                        _currentUser.Topic = currentTopic.Title;
-                        user.Topic = currentTopic.Title;
-                        break;
-                    }
-                }
+                _currentUser.Topic = currentTopic.Title;
 
                 if (currentTopic == null)
                 {

@@ -59,21 +59,14 @@ namespace ServerSide
 
             public void Disconnect()
             {
-                foreach (User user in userList)
-                {
-                    if (user.Username.Equals(_currentUser.Username))
-                    {
-                        _currentUser = null;
-                        user.Comm = null;
-                        user.Topic = null;
-                        Console.WriteLine("User " + user.Username + " succesfully disconnected");
-                        Net.sendMsg(comm.GetStream(), new Answer(true, "Disconnected succesfully."));
-                        return;
-                    }
-                }
+                _currentUser.Comm = null;
+                _currentUser.Topic = null;
 
-                Console.WriteLine("[Error] This user does not exist");
-                Net.sendMsg(comm.GetStream(), new Answer(false, "This user does not exist."));
+
+                Console.WriteLine("User " + _currentUser.Username + " succesfully disconnected");
+                Net.sendMsg(comm.GetStream(), new Answer(true, "Disconnected succesfully."));
+
+                _currentUser = null;
             }
         }
     }
