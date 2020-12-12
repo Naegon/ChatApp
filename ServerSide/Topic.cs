@@ -53,6 +53,27 @@ namespace ServerSide
                     topicList.Serialize();
                 }
             }
+
+            private void CreateTopic(Demand newTopic)
+            {
+                Console.WriteLine(newTopic);
+                foreach (Topic topic in topicList)
+                {
+                    if (topic.Title.Equals(newTopic.Title))
+                    {
+                        Console.WriteLine("A topic with that name already exist");
+                        Net.sendMsg(comm.GetStream(), new Answer(false, "A topic with that name already exist"));
+                        return;
+                    }
+                }
+
+                Console.WriteLine("Creating new topic called " + newTopic.Title);
+
+                topicList.Add(new Topic(newTopic.Title));
+                topicList.Serialize();
+
+                Net.sendMsg(comm.GetStream(), new Answer(true, "Topic " + newTopic.Title + " succesfully created"));
+            }
         }
     }
 }

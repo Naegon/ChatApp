@@ -39,8 +39,8 @@ namespace ServerSide
                         case "GetUserList":
                             PrivateMessage();
                             break;
-                        case "NewTopic":
-                            Console.WriteLine("To be implemented");
+                        case "CreateTopic":
+                            CreateTopic((Demand)request);
                             break;
                         case "Join":
                             DisplayTopic((Demand)request);

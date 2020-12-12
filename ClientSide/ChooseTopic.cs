@@ -6,7 +6,7 @@ namespace ClientSide
 {
     public partial class Client
     {
-        public void ChooseTopic()
+        private void ChooseTopic()
         {
             Console.Clear();
             Console.WriteLine("Asking for Topic list...");
@@ -35,8 +35,7 @@ namespace ClientSide
             if (target == 1) ChooseUser();
             else if (target == topicList.Titles.Count + 2)
             {
-                Request newTopic = new Request("NewTopic");
-                Net.sendMsg(Comm.GetStream(), newTopic);
+                NewTopic();
             }
             else
             {
@@ -50,6 +49,27 @@ namespace ClientSide
                 new Thread(SendChat).Start();
                 new Thread(RcvChat).Start();
             }
+        }
+
+        private void NewTopic()
+        {
+            Console.Clear();
+            Console.Write("Name of the new Topic: ");
+            string topicName = Console.ReadLine();
+
+            Demand newTopic = new Demand("CreateTopic", topicName);
+            Net.sendMsg(Comm.GetStream(), newTopic);
+
+            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+
+            if (!answer.Success)
+            {
+                Console.WriteLine(answer);
+                Console.Write("Return to Topic List ? (Type anything) ");
+                Console.ReadLine();
+            }
+
+            ChooseTopic();
         }
     }
 }

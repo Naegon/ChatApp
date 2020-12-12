@@ -41,15 +41,9 @@ namespace ClientSide
                 Net.sendMsg(Comm.GetStream(), new Demand("privateMesage", userList.Usernames[target - 1]));
 
                 Console.Write("[" + _currentUser.Username + "] ");
-                
-                new Thread(RcvChat).Start();
 
-                while (true)
-                {
-                    var msg = Console.ReadLine();
-                    Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
-                    Console.Write("[" + _currentUser.Username + "] ");
-                }
+                new Thread(SendChat).Start();
+                new Thread(RcvChat).Start();
             }
         }
     }
