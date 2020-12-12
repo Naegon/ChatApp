@@ -23,19 +23,35 @@ namespace ClientSide
                 i++;
             }
             Console.WriteLine(i + ". New Topic");
+            Console.WriteLine((i + 1) + ". Disconnect");
 
             string choice;
             do
             {
                 Console.Write("\nPlease choose an option: ");
                 choice = Console.ReadLine();
-            } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, (topicList.Titles.Count + 2).ToString()) <= 0));
+            } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, (topicList.Titles.Count + 3).ToString()) <= 0));
 
             var target = Convert.ToInt32(choice);
             if (target == 1) ChooseUser();
             else if (target == topicList.Titles.Count + 2)
             {
                 NewTopic();
+            }
+            else if (target == topicList.Titles.Count + 3)
+            {
+                Console.WriteLine("Disconnecting...");
+                Net.sendMsg(Comm.GetStream(), new Request("Disconnect"));
+
+                Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+                if (answer.Success) Menu();
+                else
+                {
+                    Console.WriteLine(answer);
+                    Console.Write("Do you want to continue? (Please type anything) ");
+                    Console.ReadLine();
+                    ChooseTopic();
+                }
             }
             else
             {

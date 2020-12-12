@@ -18,11 +18,10 @@ namespace Communication
 
         public static TopicList Deserialize()
         {
-            TopicList topicList = new TopicList();
             Stream stream = File.Open("TopicList.txt", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
 
-            topicList = (TopicList)bf.Deserialize(stream);
+            TopicList topicList = (TopicList)bf.Deserialize(stream);
             stream.Close();
             return topicList;
         }

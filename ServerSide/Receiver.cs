@@ -45,6 +45,9 @@ namespace ServerSide
                         case "Join":
                             DisplayTopic((Demand)request);
                             break;
+                        case "Disconnect":
+                            Disconnect();
+                            break;
                         case "Quit":
                             loop = false;
                             break;

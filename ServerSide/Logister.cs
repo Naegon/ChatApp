@@ -56,6 +56,25 @@ namespace ServerSide
                     Net.sendMsg(comm.GetStream(), new Answer(true, "New user added"));
                 }
             }
+
+            public void Disconnect()
+            {
+                foreach (User user in userList)
+                {
+                    if (user.Username.Equals(_currentUser.Username))
+                    {
+                        _currentUser = null;
+                        user.Comm = null;
+                        user.Topic = null;
+                        Console.WriteLine("User " + user.Username + " succesfully disconnected");
+                        Net.sendMsg(comm.GetStream(), new Answer(true, "Disconnected succesfully."));
+                        return;
+                    }
+                }
+
+                Console.WriteLine("[Error] This user does not exist");
+                Net.sendMsg(comm.GetStream(), new Answer(false, "This user does not exist."));
+            }
         }
     }
 }

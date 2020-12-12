@@ -56,7 +56,6 @@ namespace ServerSide
 
             private void CreateTopic(Demand newTopic)
             {
-                Console.WriteLine(newTopic);
                 foreach (Topic topic in topicList)
                 {
                     if (topic.Title.Equals(newTopic.Title))

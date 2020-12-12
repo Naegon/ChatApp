@@ -1,21 +1,26 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Communication/TopicList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerSide/PrivateMessage.cs">
     <Files>
-      <File FileName="ClientSide/ChooseTopic.cs" Line="60" Column="54" />
-      <File FileName="ServerSide/Topic.cs" Line="70" Column="110" />
-      <File FileName="ServerSide/Receiver.cs" Line="43" Column="58" />
-      <File FileName="Communication/TopicList.cs" Line="11" Column="32" />
+      <File FileName="ServerSide/Topic.cs" Line="79" Column="1" />
+      <File FileName="ServerSide/Receiver.cs" />
+      <File FileName="Communication/TopicList.cs" />
+      <File FileName="ServerSide/Program.cs" />
+      <File FileName="ServerSide/PrivateMessage.cs" Line="51" Column="1" />
+      <File FileName="ServerSide/Server.cs" />
+      <File FileName="ClientSide/Client.cs" />
+      <File FileName="ClientSide/Logister.cs" />
+      <File FileName="ServerSide/Logister.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
             <Node name="ClientSide" expanded="True" />
-            <Node name="Communication" expanded="True">
-              <Node name="TopicList.cs" selected="True" />
+            <Node name="Communication" expanded="True" />
+            <Node name="ServerSide" expanded="True">
+              <Node name="PrivateMessage.cs" selected="True" />
             </Node>
-            <Node name="ServerSide" expanded="True" />
             <Node name="Tests" expanded="True" />
           </Node>
         </State>
