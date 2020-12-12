@@ -1,24 +1,27 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/PrivateMessage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Program.cs">
     <Files>
-      <File FileName="ServerSide/Topic.cs" Line="79" Column="1" />
-      <File FileName="ServerSide/Receiver.cs" />
-      <File FileName="Communication/TopicList.cs" />
-      <File FileName="ServerSide/Program.cs" />
-      <File FileName="ServerSide/PrivateMessage.cs" Line="51" Column="1" />
-      <File FileName="ServerSide/Server.cs" />
-      <File FileName="ClientSide/Client.cs" />
-      <File FileName="ClientSide/Logister.cs" />
-      <File FileName="ServerSide/Logister.cs" />
-      <File FileName="ClientSide/PrivateMessage.cs" Line="38" Column="57" />
+      <File FileName="ServerSide/Topic.cs" Line="55" Column="14" />
+      <File FileName="ServerSide/Receiver.cs" Line="27" Column="1" />
+      <File FileName="Communication/TopicList.cs" Line="37" Column="40" />
+      <File FileName="ServerSide/Program.cs" Line="1" Column="1" />
+      <File FileName="ServerSide/PrivateMessage.cs" Line="52" Column="1" />
+      <File FileName="ServerSide/Server.cs" Line="48" Column="1" />
+      <File FileName="ClientSide/Client.cs" Line="45" Column="34" />
+      <File FileName="ClientSide/Logister.cs" Line="22" Column="39" />
+      <File FileName="ServerSide/Logister.cs" Line="58" Column="14" />
+      <File FileName="ClientSide/PrivateMessage.cs" Line="51" Column="1" />
+      <File FileName="ClientSide/Topic.cs" Line="92" Column="14" />
+      <File FileName="ServerSide/Create.cs" Line="1" Column="1" />
+      <File FileName="ClientSide/Program.cs" Line="14" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
             <Node name="ClientSide" expanded="True">
-              <Node name="PrivateMessage.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Communication" expanded="True" />
             <Node name="ServerSide" expanded="True" />

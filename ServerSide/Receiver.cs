@@ -19,6 +19,7 @@ namespace ServerSide
             public void Dispatch()
             {
                 var loop = true;
+
                 while (loop)
                 {
                     Request request = (Request)Net.rcvMsg(comm.GetStream());
@@ -59,6 +60,8 @@ namespace ServerSide
                             break;
                     }
                 }
+
+                Console.WriteLine("[Session ended]");
             }
         }
     }

@@ -73,19 +73,23 @@ namespace ClientSide
             Console.Write("Name of the new Topic: ");
             string topicName = Console.ReadLine();
 
-            Demand newTopic = new Demand("CreateTopic", topicName);
-            Net.sendMsg(Comm.GetStream(), newTopic);
-
-            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
-
-            if (!answer.Success)
+            if (topicName.Equals("")) ChooseTopic();
+            else
             {
-                Console.WriteLine(answer);
-                Console.Write("Return to Topic List ? (Type anything) ");
-                Console.ReadLine();
-            }
+                Demand newTopic = new Demand("CreateTopic", topicName);
+                Net.sendMsg(Comm.GetStream(), newTopic);
 
-            ChooseTopic();
+                Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+
+                if (!answer.Success)
+                {
+                    Console.WriteLine(answer);
+                    Console.Write("Return to Topic List ? (Type anything) ");
+                    Console.ReadLine();
+                }
+
+                ChooseTopic();
+            }
         }
     }
 }
