@@ -1,30 +1,18 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Communication/UserList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Topic.cs">
     <Files>
-      <File FileName="Communication/Net.cs" Line="34" Column="1" />
-      <File FileName="Communication/User.cs" Line="28" Column="1" />
-      <File FileName="ServerSide/Receiver.cs" Line="12" Column="39" />
-      <File FileName="ServerSide/Server.cs" Line="27" Column="1" />
-      <File FileName="ServerSide/Create.cs" Line="18" Column="1" />
-      <File FileName="ServerSide/Logister.cs" Line="74" Column="1" />
-      <File FileName="ServerSide/PrivateMessage.cs" Line="24" Column="1" />
-      <File FileName="ServerSide/Program.cs" Line="1" Column="1" />
-      <File FileName="ServerSide/Topic.cs" Line="71" Column="1" />
-      <File FileName="Tests/Program.cs" Line="29" Column="6" />
-      <File FileName="Tests/test.cs" Line="21" Column="1" />
-      <File FileName="Communication/UserList.cs" Line="13" Column="1" />
+      <File FileName="ClientSide/Topic.cs" Line="36" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
-            <Node name="ClientSide" expanded="True" />
-            <Node name="Communication" expanded="True">
-              <Node name="UserList.cs" selected="True" />
+            <Node name="ClientSide" expanded="True">
+              <Node name="Topic.cs" selected="True" />
             </Node>
+            <Node name="Communication" expanded="True" />
             <Node name="ServerSide" expanded="True" />
-            <Node name="Tests" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -35,9 +23,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/Server.cs" relfile="ServerSide/Server.cs" line="27" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations>
     <MultiItemSolutionRunConfiguration Id="Whole" Name="Whole">
