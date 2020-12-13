@@ -28,11 +28,27 @@ namespace ServerSide
                     return;
                 }
 
-                while (true)
+                bool run = true;
+                while (run)
                 {
-                    Chat chat = (Chat)Net.rcvMsg(comm.GetStream());
+                    Chat chat;
+                    bool isChat;
+
+                    Message message = Net.rcvMsg(comm.GetStream());
+                    isChat = !message.GetType().Equals(typeof(Request));
+
+                    if (isChat) chat = (Chat)message;
+                    else
+                    {
+                        run = false;
+                        Console.WriteLine((Request)message);
+                        chat = new Chat("Server", _currentUser.Username + " left the chat");
+                        _currentUser.Topic = "";
+                        Net.sendMsg(comm.GetStream(), new Chat("", ""));
+                    }
+
                     Console.WriteLine(chat);
-                    currentTopic.Chats.Add(chat);
+                    if (isChat) currentTopic.Chats.Add(chat);
 
                     foreach (User user in userList)
                     {
@@ -42,7 +58,7 @@ namespace ServerSide
                             Net.sendMsg(user.Comm.GetStream(), chat);
                         }
                     }
-                    topicList.Serialize();
+                    if (isChat) topicList.Serialize();
                 }
             }
 

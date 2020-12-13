@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Communication;
 
 namespace ServerSide
@@ -35,13 +36,43 @@ namespace ServerSide
                     }
                 }
 
+                _currentUser.Topic = buddy.Username;
                 Console.WriteLine("Private message with " + buddy.Username);
 
-                while (true)
+                bool run = true;
+                List<Chat> pending = new List<Chat>();
+                while (run)
                 {
-                    Chat chat = (Chat)Net.rcvMsg(comm.GetStream());
+                    Chat chat;
+                    Message message = Net.rcvMsg(comm.GetStream());
+                    bool isChat = !message.GetType().Equals(typeof(Request));
+
+                    if (isChat) chat = (Chat)message;
+                    else
+                    {
+                        run = false;
+                        Console.WriteLine((Request)message);
+                        chat = new Chat("Server", _currentUser.Username + " left the chat");
+                        Net.sendMsg(comm.GetStream(), new Chat("", ""));
+                    }
+
                     Console.WriteLine(chat);
-                    Net.sendMsg(buddy.Comm.GetStream(), chat);
+
+                    if (buddy.Topic.Equals(_currentUser.Username))
+                    {
+                        if (pending.Count > 0)
+                        {
+                            foreach(Chat pendChat in pending)
+                            {
+                                Net.sendMsg(buddy.Comm.GetStream(), pendChat);
+                            }
+                        }
+                        Net.sendMsg(buddy.Comm.GetStream(), chat);
+                    }
+                    else
+                    {
+                        pending.Add(chat);
+                    }
                 }
             }
         }

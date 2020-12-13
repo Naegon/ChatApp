@@ -1,15 +1,18 @@
 ﻿<Properties StartupConfiguration="Whole">
   <MonoDevelop.Ide.ItemProperties.ServerSide PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Topic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ClientSide/Client.cs">
     <Files>
-      <File FileName="ClientSide/Topic.cs" Line="36" Column="43" />
+      <File FileName="ClientSide/PrivateMessage.cs" Line="1" Column="1" />
+      <File FileName="ClientSide/Client.cs" Line="87" Column="18" />
+      <File FileName="ServerSide/Topic.cs" Line="43" Column="37" NotebookId="1" />
+      <File FileName="ServerSide/PrivateMessage.cs" Line="22" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ChatProject" expanded="True">
             <Node name="ClientSide" expanded="True">
-              <Node name="Topic.cs" selected="True" />
+              <Node name="Client.cs" selected="True" />
             </Node>
             <Node name="Communication" expanded="True" />
             <Node name="ServerSide" expanded="True" />

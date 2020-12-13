@@ -42,8 +42,15 @@ namespace ClientSide
 
                 Console.Write("[" + _currentUser.Username + "] ");
 
-                new Thread(SendChat).Start();
-                new Thread(RcvChat).Start();
+                _messageRunning = true;
+                Thread send = new Thread(SendChat);
+                Thread rcv = new Thread(RcvChat);
+                send.Start();
+                rcv.Start();
+
+                send.Join();
+                rcv.Join();
+                ChooseTopic();
             }
         }
     }

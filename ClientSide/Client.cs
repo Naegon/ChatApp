@@ -8,6 +8,7 @@ namespace ClientSide
     {
         private TcpClient _comm;
         private UserMsg _currentUser;
+        private bool _messageRunning = false;
 
         public TcpClient Comm { get => _comm; set => _comm = value; }
 
@@ -54,22 +55,36 @@ namespace ClientSide
 
         private void SendChat()
         {
-            while (true)
+            while (_messageRunning)
             {
                 var msg = Console.ReadLine();
-                Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
-                Console.Write("[" + _currentUser.Username + "] ");
+                if (msg.Equals("!quit"))
+                {
+                    _messageRunning = false;
+                    Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
+                }
+                else
+                {
+                    if (!msg.Equals(""))
+                    {
+                        Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
+                    }
+                    Console.Write("[" + _currentUser.Username + "] ");
+                }
             }
         }
 
         private void RcvChat()
         {
-            while (true)
+            while (_messageRunning)
             {
                 Chat chat = (Chat)Net.rcvMsg(Comm.GetStream());
-                Console.SetCursorPosition(0, Console.CursorTop);
-                Console.WriteLine(chat);
-                Console.Write("[" + _currentUser.Username + "] ");
+                if (!(chat.Sender.Equals("") && chat.Content.Equals("")))
+                {
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine(chat);
+                    Console.Write("[" + _currentUser.Username + "] ");
+                }
             }
         }
     }
