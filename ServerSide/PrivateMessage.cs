@@ -51,6 +51,7 @@ namespace ServerSide
                     else
                     {
                         run = false;
+                        _currentUser.Topic = "";
                         Console.WriteLine((Request)message);
                         chat = new Chat("Server", _currentUser.Username + " left the chat");
                         Net.sendMsg(comm.GetStream(), new Chat("", ""));

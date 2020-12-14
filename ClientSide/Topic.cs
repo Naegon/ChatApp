@@ -26,41 +26,30 @@ namespace ClientSide
             Console.WriteLine((i + 1) + ". Refresh");
             Console.WriteLine((i + 2) + ". Disconnect");
 
-            string choice;
+            int choice;
+            int count = topicList.Titles.Count;
             do
             {
-                Console.Write("\nPlease choose an option: ");
-                choice = Console.ReadLine();
-            } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, (topicList.Titles.Count + 4).ToString()) <= 0));
-
-            var target = Convert.ToInt32(choice);
-            if (target == 1) ChooseUser();
-            else if (target == topicList.Titles.Count + 2)
-            {
-                NewTopic();
-            }
-            else if (target == topicList.Titles.Count + 3)
-            {
-                ChooseTopic();
-            }
-            else if (target == topicList.Titles.Count + 4)
-            {
-                Console.WriteLine("Disconnecting...");
-                Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
-
-                Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
-                if (answer.Success) Menu();
-                else
+                try
                 {
-                    Console.WriteLine(answer);
-                    Console.Write("Do you want to continue? (Please type anything) ");
-                    Console.ReadLine();
-                    ChooseTopic();
+                    Console.Write("\nPlease choose an option: ");
+                    choice = Convert.ToInt32(Console.ReadLine());
                 }
-            }
+                catch (FormatException)
+                {
+                    choice = 0;
+                }
+                
+            } while (choice <=0 || choice > count + 4);
+
+
+            if (choice == 1) ChooseUser();
+            else if (choice == count + 2) NewTopic();
+            else if (choice == count + 3) ChooseTopic();
+            else if (choice == count + 4) Disconnect();
             else
             {
-                Demand choosedTopic = new Demand(Net.Action.Join, topicList.Titles[target - 2]);
+                Demand choosedTopic = new Demand(Net.Action.Join, topicList.Titles[choice - 2]);
                 Net.sendMsg(Comm.GetStream(), choosedTopic);
 
                 Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
@@ -100,6 +89,22 @@ namespace ClientSide
                     Console.ReadLine();
                 }
 
+                ChooseTopic();
+            }
+        }
+
+        private void Disconnect()
+        {
+            Console.WriteLine("Disconnecting...");
+            Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
+
+            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+            if (answer.Success) Menu();
+            else
+            {
+                Console.WriteLine(answer);
+                Console.Write("Do you want to continue? (Please type anything) ");
+                Console.ReadLine();
                 ChooseTopic();
             }
         }

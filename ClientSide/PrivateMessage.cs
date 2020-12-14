@@ -24,21 +24,27 @@ namespace ClientSide
                 return;
             }
 
-            Console.WriteLine((userList.Usernames.Count + 1) + ". Back");
+            Console.WriteLine((userList.Usernames.Count + 1) + ". Back\n");
 
-            string choice;
+            int choice;
             do
             {
-                Console.Write("\nPlease choose an option: ");
-                choice = Console.ReadLine();
-            } while (!(String.Compare(choice, "1") >= 0 && String.Compare(choice, (userList.Usernames.Count + 1).ToString()) <= 0));
+                try
+                {
+                    Console.Write("Please choose an option: ");
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    choice = 0;
+                }
 
-            int target = Convert.ToInt32(choice);
+            } while (choice <= 0 || choice > userList.Usernames.Count + 1);
 
-            if (target == userList.Usernames.Count + 1) ChooseTopic();
+            if (choice == userList.Usernames.Count + 1) ChooseTopic();
             else
             {
-                Net.sendMsg(Comm.GetStream(), new Demand(Net.Action.PrivateMessage, userList.Usernames[target - 1]));
+                Net.sendMsg(Comm.GetStream(), new Demand(Net.Action.PrivateMessage, userList.Usernames[choice - 1]));
 
                 Console.Write("[" + _currentUser.Username + "] ");
 

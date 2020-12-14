@@ -13,17 +13,22 @@ namespace ServerSide
                 {
                     if (user.Username.Equals(userMsg.Username))
                     {
-                        if (user.Password.Equals(userMsg.Password))
+                        if (!user.Password.Equals(userMsg.Password))
+                        {
+                            Console.WriteLine("Error: Wrong password");
+                            Net.sendMsg(comm.GetStream(), new Answer(false, "Wrong password"));
+                        }
+                        else if (user.Comm != null)
+                        {
+                            Console.WriteLine("User Already connected");
+                            Net.sendMsg(comm.GetStream(), new Answer(false, "User Already connected"));
+                        }
+                        else
                         {
                             Console.WriteLine("Success: Login succesfully");
                             user.Comm = comm;
                             _currentUser = user;
-                            Net.sendMsg(comm.GetStream(), new Answer(true, "Login succesfully"));
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error: Wrong password");
-                            Net.sendMsg(comm.GetStream(), new Answer(false, "Wrong password"));
+                            Net.sendMsg(comm.GetStream(), new Answer(true, "Loged-in succesfully"));
                         }
                         return;
                     }
