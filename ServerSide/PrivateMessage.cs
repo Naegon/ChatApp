@@ -15,13 +15,13 @@ namespace ServerSide
                 UserListMsg connected = new UserListMsg();
                 foreach (User user in userList)
                 {
-                    if (user.Comm != null && user.Username != _currentUser.Username)
+                    if (user.Comm != null && user.Username != currentUser.Username)
                     {
                         connected.Usernames.Add(user.Username);
                     }
                 }
 
-                Net.sendMsg(comm.GetStream(), connected);
+                Net.SendMsg(comm.GetStream(), connected);
             }
 
             private void PrivateMessage(Demand demand)
@@ -36,7 +36,7 @@ namespace ServerSide
                     }
                 }
 
-                _currentUser.Topic = buddy.Username;
+                currentUser.Topic = buddy.Username;
                 Console.WriteLine("Private message with " + buddy.Username);
 
                 bool run = true;
@@ -44,31 +44,31 @@ namespace ServerSide
                 while (run)
                 {
                     Chat chat;
-                    Message message = Net.rcvMsg(comm.GetStream());
+                    Message message = Net.RcvMsg(comm.GetStream());
                     bool isChat = !message.GetType().Equals(typeof(Request));
 
                     if (isChat) chat = (Chat)message;
                     else
                     {
                         run = false;
-                        _currentUser.Topic = "";
+                        currentUser.Topic = "";
                         Console.WriteLine((Request)message);
-                        chat = new Chat("Server", _currentUser.Username + " left the chat");
-                        Net.sendMsg(comm.GetStream(), new Chat("", ""));
+                        chat = new Chat("Server", currentUser.Username + " left the chat");
+                        Net.SendMsg(comm.GetStream(), new Chat("", ""));
                     }
 
                     Console.WriteLine(chat);
 
-                    if (buddy.Topic.Equals(_currentUser.Username))
+                    if (buddy.Topic.Equals(currentUser.Username))
                     {
                         if (pending.Count > 0)
                         {
                             foreach(Chat pendChat in pending)
                             {
-                                Net.sendMsg(buddy.Comm.GetStream(), pendChat);
+                                Net.SendMsg(buddy.Comm.GetStream(), pendChat);
                             }
                         }
-                        Net.sendMsg(buddy.Comm.GetStream(), chat);
+                        Net.SendMsg(buddy.Comm.GetStream(), chat);
                     }
                     else
                     {

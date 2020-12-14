@@ -9,7 +9,7 @@ namespace ServerSide
         private partial class Receiver
         {
             private TcpClient comm;
-            private User _currentUser;
+            private User currentUser;
 
             public Receiver(TcpClient client)
             {
@@ -22,7 +22,7 @@ namespace ServerSide
 
                 while (loop)
                 {
-                    Request request = (Request)Net.rcvMsg(comm.GetStream());
+                    Request request = (Request)Net.RcvMsg(comm.GetStream());
                     Console.WriteLine("\nReceiving data: \n" + request.ToString());
 
                     switch (request.Action)
@@ -35,7 +35,7 @@ namespace ServerSide
                             break;
                         case Net.Action.GetTopicList:
                             Console.WriteLine("Sending back topic list");
-                            Net.sendMsg(comm.GetStream(), new TopicListMsg(topicList));
+                            Net.SendMsg(comm.GetStream(), new TopicListMsg(topicList));
                             break;
                         case Net.Action.GetUserList:
                             GetUserList();

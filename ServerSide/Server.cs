@@ -21,6 +21,7 @@ namespace ServerSide
         public void Start()
         {
             var create = true;
+
             TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
             l.Start();
 

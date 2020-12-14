@@ -48,7 +48,7 @@ namespace Communication
     [Serializable]
     public class TopicListMsg : Message
     {
-        private List<string> _titles;
+        private readonly List<string> _titles;
         public List<string> Titles { get => _titles; }
 
         public TopicListMsg(TopicList topicList)
@@ -62,19 +62,19 @@ namespace Communication
 
         public override string ToString()
         {
-            string _out = "Topic list:\n";
+            string result = "Topic list:\n";
             foreach (string title in _titles)
             {
-                _out += "  - " + title + "\n";
+                result += "  - " + title + "\n";
             }
-            return _out;
+            return result;
         }
     }
 
     [Serializable]
     public class UserListMsg : Message
     {
-        private List<string> _usernames;
+        private readonly List<string> _usernames;
         public List<string> Usernames { get => _usernames; }
 
         public UserListMsg()
@@ -96,24 +96,24 @@ namespace Communication
 
         public override string ToString()
         {
-            string _out = "User list:";
+            string result = "User list:";
             var i = 1;
             if (_usernames.Count <= 0) return "No connected user yet. Please try later.";
 
             foreach (string username in _usernames)
             {
-                _out += "\n" + i + ". " + username;
+                result += "\n" + i + ". " + username;
                 i++;
             }
-            return _out;
+            return result;
         }
     }
 
     [Serializable]
     public class Chat : Message
     {
-        private string _sender;
-        private string _content;
+        private readonly string _sender;
+        private readonly string _content;
 
         public string Sender { get => _sender; }
         public string Content { get => _content; }
@@ -133,8 +133,8 @@ namespace Communication
     [Serializable]
     public class Answer : Message
     {
-        private bool _success;
-        private string _message;
+        private readonly bool _success;
+        private readonly string _message;
 
         public bool Success { get => _success; }
         public string Message { get => _message; }

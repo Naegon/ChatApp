@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Sockets;
 
 namespace Communication
 {
@@ -26,7 +25,7 @@ namespace Communication
     [Serializable]
     public class Demand : Request
     {
-        private string _title;
+        private readonly string _title;
         public string Title { get => _title; }
 
         public Demand(Net.Action action, string title) : base(action)
@@ -43,8 +42,8 @@ namespace Communication
     [Serializable]
     public class UserMsg : Request
     {
-        private string _username;
-        private string _password;
+        private readonly string _username;
+        private readonly string _password;
 
         public string Username { get => _username; }
         public string Password { get => _password; }

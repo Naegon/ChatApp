@@ -16,9 +16,9 @@ namespace ClientSide
 
             Console.WriteLine("Sending data to server...");
             UserMsg user = new UserMsg(Net.Action.Login, username, password);
-            Net.sendMsg(Comm.GetStream(), user);
+            Net.SendMsg(Comm.GetStream(), user);
 
-            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(answer);
 
             if (answer.Success)
@@ -54,14 +54,13 @@ namespace ClientSide
 
             Console.WriteLine("Sending data to server...");
             UserMsg user = new UserMsg(Net.Action.Register, username, password);
-            Net.sendMsg(Comm.GetStream(), user);
+            Net.SendMsg(Comm.GetStream(), user);
 
-            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(answer);
 
             if (answer.Success)
             {
-                Console.WriteLine("Login");
                 _currentUser = user;
                 Console.Clear();
                 ChooseTopic();

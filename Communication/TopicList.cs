@@ -31,7 +31,7 @@ namespace Communication
             if (Count > 0)
             {
                 string outStr = "Topic list:\n";
-                ForEach(Topic => outStr += "||-> " + Topic + "\n");
+                foreach (Topic topic in this) { outStr += "||-> " + topic + "\n"; }
                 return outStr;
             }
             else return "No topic yet";

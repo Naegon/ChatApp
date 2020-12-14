@@ -22,20 +22,20 @@ namespace ServerSide
         {
             List<Chat> chatMusique = new List<Chat>
                     {
-                        new Chat(userList[0].Username, "Salut Seb"),
-                        new Chat(userList[1].Username, "Oh tient, salut bob !"),
-                        new Chat(userList[0].Username, "Qui d'autre est là ?"),
-                        new Chat(userList[3].Username, "Il y a moi !"),
-                        new Chat(userList[1].Username, "Salut Pam !"),
+                        new Chat("Bob", "Salut Seb"),
+                        new Chat("Seb", "Oh tient, salut bob !"),
+                        new Chat("Léo", "Qui d'autre est là ?"),
+                        new Chat("Pam", "Il y a moi !"),
+                        new Chat("Seb", "Salut Pam !"),
                     };
 
             List<Chat> chatSport = new List<Chat>
                     {
-                        new Chat(userList[2].Username, "Demain c'est biathlon !"),
-                        new Chat(userList[3].Username, "Oh cool ! Quelle heure ?"),
-                        new Chat(userList[2].Username, "14H30"),
-                        new Chat(userList[2].Username, "Euh non, 15H !"),
-                        new Chat(userList[3].Username, "Super, c'est noté !"),
+                        new Chat("Léo", "Demain c'est biathlon !"),
+                        new Chat("Pam", "Oh cool ! Quelle heure ?"),
+                        new Chat("Léo", "14H30"),
+                        new Chat("Léo", "Euh non, 15H !"),
+                        new Chat("Pam", "Super, c'est noté !"),
                     };
 
             TopicList topicList = new TopicList

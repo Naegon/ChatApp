@@ -10,9 +10,9 @@ namespace ClientSide
         {
             Console.Clear();
             Request privateMessage = new Request(Net.Action.GetUserList);
-            Net.sendMsg(Comm.GetStream(), privateMessage);
+            Net.SendMsg(Comm.GetStream(), privateMessage);
 
-            UserListMsg userList = (UserListMsg)Net.rcvMsg(Comm.GetStream());
+            UserListMsg userList = (UserListMsg)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(userList);
 
 
@@ -44,7 +44,7 @@ namespace ClientSide
             if (choice == userList.Usernames.Count + 1) ChooseTopic();
             else
             {
-                Net.sendMsg(Comm.GetStream(), new Demand(Net.Action.PrivateMessage, userList.Usernames[choice - 1]));
+                Net.SendMsg(Comm.GetStream(), new Demand(Net.Action.PrivateMessage, userList.Usernames[choice - 1]));
 
                 Console.Write("[" + _currentUser.Username + "] ");
 

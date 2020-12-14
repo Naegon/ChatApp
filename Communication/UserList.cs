@@ -20,11 +20,10 @@ namespace Communication
 
         public static UserList Deserialize()
         {
-            UserList userList = new UserList();
             Stream stream = File.Open("UserList.txt", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
 
-            userList = (UserList)bf.Deserialize(stream);
+            UserList userList = (UserList)bf.Deserialize(stream);
             stream.Close();
             return userList;
         }
@@ -34,7 +33,7 @@ namespace Communication
             if (Count > 0)
             {
                 string outStr = "User list:\n";
-                ForEach(user => outStr += "  - " + user + "\n");
+                foreach (User user in this) { outStr += "  - " + user + "\n"; }
                 return outStr;
             }
             else return "No user yet";

@@ -18,13 +18,13 @@ namespace Communication
             Quit
         }
 
-        public static void sendMsg(Stream s, Message message)
+        public static void SendMsg(Stream s, Message message)
         {
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(s, message);
         }
 
-        public static Message rcvMsg(Stream s)
+        public static Message RcvMsg(Stream s)
         {
             BinaryFormatter bf = new BinaryFormatter();
             return (Message)bf.Deserialize(s);

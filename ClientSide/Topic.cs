@@ -10,9 +10,9 @@ namespace ClientSide
         {
             Console.Clear();
             Console.WriteLine("Asking for Topic list...");
-            Net.sendMsg(Comm.GetStream(), new Request(Net.Action.GetTopicList));
+            Net.SendMsg(Comm.GetStream(), new Request(Net.Action.GetTopicList));
 
-            TopicListMsg topicList = (TopicListMsg)Net.rcvMsg(Comm.GetStream());
+            TopicListMsg topicList = (TopicListMsg)Net.RcvMsg(Comm.GetStream());
 
             int i = 2;
             Console.WriteLine("\nPlease choose one of the listed topic: ");
@@ -50,9 +50,9 @@ namespace ClientSide
             else
             {
                 Demand choosedTopic = new Demand(Net.Action.Join, topicList.Titles[choice - 2]);
-                Net.sendMsg(Comm.GetStream(), choosedTopic);
+                Net.SendMsg(Comm.GetStream(), choosedTopic);
 
-                Topic topic = (Topic)Net.rcvMsg(Comm.GetStream());
+                Topic topic = (Topic)Net.RcvMsg(Comm.GetStream());
                 Console.WriteLine(topic);
                 Console.Write("[" + _currentUser.Username + "] ");
 
@@ -78,9 +78,9 @@ namespace ClientSide
             else
             {
                 Demand newTopic = new Demand(Net.Action.CreateTopic, topicName);
-                Net.sendMsg(Comm.GetStream(), newTopic);
+                Net.SendMsg(Comm.GetStream(), newTopic);
 
-                Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+                Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
 
                 if (!answer.Success)
                 {
@@ -96,9 +96,9 @@ namespace ClientSide
         private void Disconnect()
         {
             Console.WriteLine("Disconnecting...");
-            Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
+            Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
 
-            Answer answer = (Answer)Net.rcvMsg(Comm.GetStream());
+            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
             if (answer.Success) Menu();
             else
             {

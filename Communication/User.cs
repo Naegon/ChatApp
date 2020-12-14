@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Sockets;
-using Communication;
 
 namespace Communication
 {
@@ -17,7 +16,6 @@ namespace Communication
         public string Password { get => _password; }
         public string Topic { get => _topic; set => _topic = value; }
         public TcpClient Comm { get => _comm; set => _comm = value; }
-        public static int Count { get => Count; set => Count = value; }
 
         public User(string username, string password)
         {

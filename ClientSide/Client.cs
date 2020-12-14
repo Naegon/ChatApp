@@ -24,7 +24,7 @@ namespace ClientSide
             Console.WriteLine("\nWelcome!");
             Console.WriteLine("1. Login \n2. Register \n3. Quit");
 
-            String choice;
+            string choice;
             do
             {
                 Console.Write("\nPlease choose an option: ");
@@ -43,7 +43,7 @@ namespace ClientSide
                     break;
                 case ("3"):
                     Console.WriteLine("Quit");
-                    Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
+                    Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
                     Comm.Close();
                     break;
                 default:
@@ -61,13 +61,13 @@ namespace ClientSide
                 if (msg.Equals("!quit"))
                 {
                     _messageRunning = false;
-                    Net.sendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
+                    Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
                 }
                 else
                 {
                     if (!msg.Equals(""))
                     {
-                        Net.sendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
+                        Net.SendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
                     }
                     Console.Write("[" + _currentUser.Username + "] ");
                 }
@@ -78,7 +78,7 @@ namespace ClientSide
         {
             while (_messageRunning)
             {
-                Chat chat = (Chat)Net.rcvMsg(Comm.GetStream());
+                Chat chat = (Chat)Net.RcvMsg(Comm.GetStream());
                 if (!(chat.Sender.Equals("") && chat.Content.Equals("")))
                 {
                     Console.SetCursorPosition(0, Console.CursorTop);
