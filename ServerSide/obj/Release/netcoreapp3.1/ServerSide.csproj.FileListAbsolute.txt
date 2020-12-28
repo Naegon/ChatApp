@@ -1,0 +1,16 @@
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.exe
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.deps.json
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.runtimeconfig.json
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.runtimeconfig.dev.json
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.dll
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\ServerSide.pdb
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\Communication.dll
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\bin\Release\netcoreapp3.1\Communication.pdb
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.csprojAssemblyReference.cache
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.AssemblyInfoInputs.cache
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.AssemblyInfo.cs
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.csproj.CoreCompileInputs.cache
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.csproj.CopyComplete
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.dll
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.pdb
+C:\Users\hamel\Documents\C#\ChatProject\ServerSide\obj\Release\netcoreapp3.1\ServerSide.genruntimeconfig.cache

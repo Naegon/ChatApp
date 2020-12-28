@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/ServerSide.csproj": {}
+    "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ServerSide\\ServerSide.csproj": {}
   },
   "projects": {
-    "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/Communication.csproj": {
+    "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\Communication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/Communication.csproj",
+        "projectUniqueName": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\Communication.csproj",
         "projectName": "Communication",
-        "projectPath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/Communication.csproj",
-        "packagesPath": "/Users/naegon/.nuget/packages/",
-        "outputPath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/",
+        "projectPath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\Communication.csproj",
+        "packagesPath": "C:\\Users\\hamel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/naegon/.config/NuGet/NuGet.Config"
+          "C:\\Users\\hamel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,34 +54,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/ServerSide.csproj": {
+    "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ServerSide\\ServerSide.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/ServerSide.csproj",
+        "projectUniqueName": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ServerSide\\ServerSide.csproj",
         "projectName": "ServerSide",
-        "projectPath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/ServerSide.csproj",
-        "packagesPath": "/Users/naegon/.nuget/packages/",
-        "outputPath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ServerSide/obj/",
+        "projectPath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ServerSide\\ServerSide.csproj",
+        "packagesPath": "C:\\Users\\hamel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ServerSide\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/naegon/.config/NuGet/NuGet.Config"
+          "C:\\Users\\hamel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/Communication.csproj": {
-                "projectPath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/Communication.csproj"
+              "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\Communication.csproj": {
+                "projectPath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\Communication\\Communication.csproj"
               }
             }
           }
@@ -108,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

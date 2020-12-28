@@ -1,0 +1,9 @@
+C:\Users\hamel\Documents\C#\ChatProject\Communication\bin\Release\netcoreapp3.1\Communication.deps.json
+C:\Users\hamel\Documents\C#\ChatProject\Communication\bin\Release\netcoreapp3.1\Communication.dll
+C:\Users\hamel\Documents\C#\ChatProject\Communication\bin\Release\netcoreapp3.1\Communication.pdb
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.csprojAssemblyReference.cache
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.AssemblyInfoInputs.cache
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.AssemblyInfo.cs
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.csproj.CoreCompileInputs.cache
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.dll
+C:\Users\hamel\Documents\C#\ChatProject\Communication\obj\Release\netcoreapp3.1\Communication.pdb

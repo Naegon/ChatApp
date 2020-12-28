@@ -7,3 +7,12 @@
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.dll
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.pdb
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Communication/obj/Debug/netcoreapp3.1/Communication.csprojAssemblyReference.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\bin\Debug\netcoreapp3.1\Communication.deps.json
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\bin\Debug\netcoreapp3.1\Communication.dll
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\bin\Debug\netcoreapp3.1\Communication.pdb
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.csprojAssemblyReference.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.AssemblyInfoInputs.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.AssemblyInfo.cs
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.csproj.CoreCompileInputs.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.dll
+C:\Users\hamel\Documents\C#\ChatGUI\Communication\obj\Debug\netcoreapp3.1\Communication.pdb

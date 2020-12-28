@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ylHqZsbWl9s1sQVQLBP+cypofBVZZZ9JPP5REcwD1a4TnqHMb0ir0iZBlhH/nL7jb7F5uYAtJXMramcSCVxTGw==",
+  "dgSpecHash": "Qw39F88HwhIClqOsXcrS3TfUD1W/iXyRq+u8gIGQcXs2HYIQTa1NVrbI2zPVLyBExz06xhvCwsWmK0RhpKG8qA==",
   "success": true,
-  "projectFilePath": "/Users/naegon/Documents/Efrei/M1/C#/ChatProject/ClientSide/ClientSide.csproj",
+  "projectFilePath": "C:\\Users\\hamel\\Documents\\C#\\ChatGUI\\ClientSide\\ClientSide.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
