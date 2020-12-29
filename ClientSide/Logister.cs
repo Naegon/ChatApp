@@ -72,6 +72,7 @@ namespace ClientSide
                 var ans = Console.ReadLine();
                 while (ans != null && !(ans.Equals("y") || ans.Equals("n")))
                 {
+                    
                     Console.Write("Please type y (yes) or n (no) ");
                     ans = Console.ReadLine();
                 }
