@@ -17,7 +17,7 @@ namespace ClientSideGUI
         {
             Net.SendMsg(_client.Comm.GetStream(), new Request(Net.Action.Quit));
             _client.Comm.Close();
-            Parent.Dispose();
+            Dispose();
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
