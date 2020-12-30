@@ -8,7 +8,7 @@ namespace ClientSideGUI
     public class Client
     {
         internal UserMsg _currentUser;           // Once logged-in, the current user
-        private bool _messageRunning;   // Used to control while loop in conversations
+        internal bool _messageRunning;   // Used to control while loop in conversations
         public TcpClient Comm { get; }
 
         public Client(string hostname, int port)

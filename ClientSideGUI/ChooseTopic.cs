@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using Communication;
 
@@ -35,9 +36,28 @@ namespace ClientSideGUI
                 Demand newTopic = new Demand(Net.Action.CreateTopic, value);
                 Net.SendMsg(_client.Comm.GetStream(), newTopic);
             }
-
+            
             Net.RcvMsg(_client.Comm.GetStream());
             InitializeComponent();
+        }
+        
+        private void joinButton_Click(Object sender, EventArgs e, string title)
+        {
+            Demand choosedTopic = new Demand(Net.Action.Join, title);
+            Net.SendMsg(_client.Comm.GetStream(), choosedTopic);
+            
+            Topic topic = (Topic)Net.RcvMsg(_client.Comm.GetStream());
+
+            Console.WriteLine(topic);
+            _client._messageRunning = true;
+            // Thread send = new Thread(SendChat);
+            // Thread rcv = new Thread(RcvChat);
+            // send.Start();
+            // rcv.Start();
+            //
+            // send.Join();
+            // rcv.Join();
+            // ChooseTopic();
         }
     }
 }

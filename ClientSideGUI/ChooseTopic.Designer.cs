@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Communication;
@@ -52,7 +53,7 @@ namespace ClientSideGUI
                 button.TabIndex = 0;
                 button.Text = title;
                 button.UseVisualStyleBackColor = true;
-                // button.Click += new System.EventHandler(this.buttonLogin_Click);
+                button.Click += (sender, EventArgs) => { joinButton_Click(sender, EventArgs, title); };
                 index ++;
                 Controls.Add(button);
                 topicButtons.Add(button);
@@ -71,7 +72,7 @@ namespace ClientSideGUI
             // 
             // disconnectButton
             // 
-            this.disconnectButton.Location = new System.Drawing.Point(640, 63);
+            this.disconnectButton.Location = new System.Drawing.Point(640, 73);
             this.disconnectButton.Name = "disconnectButton";
             this.disconnectButton.Size = new System.Drawing.Size(150, 53);
             this.disconnectButton.TabIndex = 0;
