@@ -31,7 +31,9 @@ namespace ClientSideGUI
             if (answer.Success)
             {
                 _client._currentUser = user;
-                // ChooseTopic();
+                var chooseTopic = new ChooseTopic(_client);
+                chooseTopic.Show();
+                Dispose();
             }
 
             else
