@@ -22,13 +22,13 @@ namespace ClientSideGUI
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Logister login = new Logister("Login", _client);
+            Logister login = new Logister(Net.Action.Login, _client);
             login.Show();
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            Logister register = new Logister("Register", _client);
+            Logister register = new Logister(Net.Action.Register, _client);
             register.Show();
         }
     }

@@ -29,7 +29,7 @@ namespace ClientSideGUI
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(string action)
+        private void InitializeComponent()
         {
             this.labelUsername = new System.Windows.Forms.Label();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
@@ -40,7 +40,7 @@ namespace ClientSideGUI
             this.labelError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelUsername
             // 
             this.labelUsername.Location = new System.Drawing.Point(12, 9);
             this.labelUsername.Name = "labelUsername";
@@ -48,14 +48,14 @@ namespace ClientSideGUI
             this.labelUsername.TabIndex = 0;
             this.labelUsername.Text = "Username:";
             // 
-            // textBox1
+            // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(118, 6);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(282, 26);
             this.textBoxUsername.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(118, 38);
             this.textBoxPassword.Name = "textBoxPassword";
@@ -63,7 +63,7 @@ namespace ClientSideGUI
             this.textBoxPassword.Size = new System.Drawing.Size(282, 26);
             this.textBoxPassword.TabIndex = 3;
             // 
-            // label2
+            // labelPassword
             // 
             this.labelPassword.Location = new System.Drawing.Point(12, 41);
             this.labelPassword.Name = "labelPassword";
@@ -71,7 +71,7 @@ namespace ClientSideGUI
             this.labelPassword.TabIndex = 2;
             this.labelPassword.Text = "Password:";
             // 
-            // button1
+            // buttonValidate
             // 
             this.buttonValidate.Location = new System.Drawing.Point(12, 110);
             this.buttonValidate.Name = "buttonValidate";
@@ -79,8 +79,9 @@ namespace ClientSideGUI
             this.buttonValidate.TabIndex = 4;
             this.buttonValidate.Text = "Validate";
             this.buttonValidate.UseVisualStyleBackColor = true;
+            this.buttonValidate.Click += new System.EventHandler(this.buttonValidate_Click);
             // 
-            // button2
+            // buttonBack
             // 
             this.buttonBack.Location = new System.Drawing.Point(209, 110);
             this.buttonBack.Name = "buttonBack";
@@ -90,7 +91,7 @@ namespace ClientSideGUI
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
-            // label3
+            // labelError
             // 
             this.labelError.ForeColor = System.Drawing.Color.DarkRed;
             this.labelError.Location = new System.Drawing.Point(12, 84);
@@ -98,6 +99,7 @@ namespace ClientSideGUI
             this.labelError.Size = new System.Drawing.Size(388, 23);
             this.labelError.TabIndex = 6;
             this.labelError.Text = "Error message";
+            this.labelError.Visible = false;
             // 
             // Logister
             // 
@@ -110,7 +112,7 @@ namespace ClientSideGUI
             this.Controls.Add(this.textBoxUsername);
             this.Controls.Add(this.labelUsername);
             this.Name = "Logister";
-            this.Text = action;
+            this.Text = "Credentials";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

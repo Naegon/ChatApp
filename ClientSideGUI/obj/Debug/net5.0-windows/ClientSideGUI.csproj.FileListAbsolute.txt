@@ -19,3 +19,4 @@ C:\Users\hamel\Documents\C#\ChatGUI\ClientSideGUI\obj\Debug\net5.0-windows\Clien
 C:\Users\hamel\Documents\C#\ChatGUI\ClientSideGUI\obj\Debug\net5.0-windows\ClientSideGUI.genruntimeconfig.cache
 C:\Users\hamel\Documents\C#\ChatGUI\ClientSideGUI\obj\Debug\net5.0-windows\ClientSideGUI.Menu.resources
 C:\Users\hamel\Documents\C#\ChatGUI\ClientSideGUI\obj\Debug\net5.0-windows\ClientSideGUI.csproj.GenerateResource.cache
+C:\Users\hamel\Documents\C#\ChatGUI\ClientSideGUI\obj\Debug\net5.0-windows\ClientSideGUI.Logister.resources

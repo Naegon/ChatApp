@@ -7,7 +7,7 @@ namespace ClientSideGUI
     // Each client instance will represent a user connected to a server
     public class Client
     {
-        private UserMsg _currentUser;           // Once logged-in, the current user
+        internal UserMsg _currentUser;           // Once logged-in, the current user
         private bool _messageRunning;   // Used to control while loop in conversations
         public TcpClient Comm { get; }
 
