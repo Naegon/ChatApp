@@ -99,7 +99,11 @@ namespace ClientSide
             Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
 
             Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
-            if (answer.Success) Menu();
+            if (answer.Success)
+            {
+                _currentUser = null;
+                Menu();
+            }
             else
             {
                 Console.WriteLine(answer);
