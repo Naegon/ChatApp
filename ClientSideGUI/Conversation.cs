@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using Communication;
 
@@ -10,8 +11,10 @@ namespace ClientSideGUI
         public Conversation(Topic topic, Client client)
         {
             _client = client;
-            Console.WriteLine(topic);
             InitializeComponent(topic);
+
+            Thread rcvChat = new Thread(RcvChat);
+            rcvChat.Start();
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)
@@ -28,6 +31,19 @@ namespace ClientSideGUI
             Net.SendMsg(_client.Comm.GetStream(), msg);
             topicText.Text += msg + "\r\n";
             textBoxChat.Text = "";
+        }
+        
+        private void RcvChat()
+        {
+            while (_client._messageRunning)
+            {
+                var chat = (Chat)Net.RcvMsg(_client.Comm.GetStream());
+                
+                // Discard empty messages
+                if (chat.Sender.Equals("") && chat.Content.Equals("")) continue;
+
+                topicText.Text += chat + "\r\n";
+            }
         }
     }
 }
