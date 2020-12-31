@@ -32,6 +32,13 @@ namespace ClientSideGUI
             topicText.Text += msg + "\r\n";
             textBoxChat.Text = "";
         }
+
+        private void buttonQuit_Click(object sender, EventArgs e)
+        {
+            _client._messageRunning = false;        
+            Net.SendMsg(_client.Comm.GetStream(), new Request(Net.Action.Quit));
+            Dispose();
+        }
         
         private void RcvChat()
         {
