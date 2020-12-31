@@ -47,9 +47,10 @@ namespace ClientSideGUI
             Net.SendMsg(_client.Comm.GetStream(), choosedTopic);
             
             Topic topic = (Topic)Net.RcvMsg(_client.Comm.GetStream());
-
-            Console.WriteLine(topic);
             _client._messageRunning = true;
+            
+            Conversation conversation = new Conversation(topic, _client);
+            conversation.Show();
             // Thread send = new Thread(SendChat);
             // Thread rcv = new Thread(RcvChat);
             // send.Start();
