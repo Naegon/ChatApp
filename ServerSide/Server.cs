@@ -9,40 +9,39 @@ namespace ServerSide
 {
     public partial class Server
     {
-        private int port;
-        private static UserList userList;
-        private static TopicList topicList;
+        private readonly int _port;
+        private static UserList _userList;
+        private static TopicList _topicList;
 
         public Server(int port)
         {
-            this.port = port;
+            _port = port;
         }
 
         public void Start()
         {
-            var create = true;
+            const bool create = false;
 
-            TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
+            var l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), _port);
             l.Start();
 
             if (create) Create.Users();
-            if (File.Exists("UserList.txt")) userList = UserList.Deserialize();
-            else userList = new UserList();
+            _userList = File.Exists("UserList.txt") ? UserList.Deserialize() : new UserList();
 
-            Console.WriteLine(userList + "\n");
+            Console.WriteLine(_userList + "\n");
 
-            if (create) Create.Topics(userList);
-            if (File.Exists("TopicList.txt")) topicList = TopicList.Deserialize();
-            else topicList = new TopicList();
+            if (create) Create.Topics();
+            _topicList = File.Exists("TopicList.txt") ? TopicList.Deserialize() : new TopicList();
 
-            Console.WriteLine(topicList);
+            Console.WriteLine(_topicList);
 
             while (true)
             {
-                TcpClient comm = l.AcceptTcpClient();
+                var comm = l.AcceptTcpClient();
                 Console.WriteLine("\nConnection established @" + comm);
                 new Thread(new Receiver(comm).Dispatch).Start();
             }
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }

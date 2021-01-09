@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Communication;
 
 namespace ServerSide
@@ -9,69 +10,61 @@ namespace ServerSide
         {
             private void Login(UserMsg userMsg)
             {
-                foreach (User user in userList)
+                foreach (var user in _userList.Where(user => user.Username.Equals(userMsg.Username)))
                 {
-                    if (user.Username.Equals(userMsg.Username))
-                    { 
-                        if (!user.Password.Equals(userMsg.Password))
-                        {
-                            Console.WriteLine("Error: Wrong password");
-                            Net.SendMsg(comm.GetStream(), new Answer(false, "Wrong password"));
-                        }
-                        else if (user.Comm != null)
-                        {
-                            Console.WriteLine("User already connected");
-                            Net.SendMsg(comm.GetStream(), new Answer(false, "User Already connected"));
-                        }
-                        else
-                        {
-                            Console.WriteLine("Success: Login succesfully");
-                            user.Comm = comm;
-                            currentUser = user;
-                            Net.SendMsg(comm.GetStream(), new Answer(true, "Loged-in succesfully"));
-                        }
-                        return;
+                    if (!user.Password.Equals(userMsg.Password))
+                    {
+                        Console.WriteLine("Error: Wrong password");
+                        Net.SendMsg(_comm.GetStream(), new Answer(false, "Wrong password"));
                     }
+                    else if (user.Comm != null)
+                    {
+                        Console.WriteLine("User already connected");
+                        Net.SendMsg(_comm.GetStream(), new Answer(false, "User Already connected"));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Success: Login successfully");
+                        user.Comm = _comm;
+                        _currentUser = user;
+                        Net.SendMsg(_comm.GetStream(), new Answer(true, "Logged-in successfully"));
+                    }
+                    return;
                 }
                 Console.WriteLine("Error: No user with that username");
-                Net.SendMsg(comm.GetStream(), new Answer(false, "No user with that username"));
+                Net.SendMsg(_comm.GetStream(), new Answer(false, "No user with that username"));
             }
 
             private void Register(UserMsg userMsg)
             {
-                bool isValid = true;
-                foreach (User user in userList)
+                var isValid = true;
+                foreach (var unused in _userList.Where(user => user.Username.Equals(userMsg.Username)))
                 {
-                    if (user.Username.Equals(userMsg.Username))
-                    {
-                        Console.WriteLine("Error: An user with that username already exist");
-                        Net.SendMsg(comm.GetStream(), new Answer(false, "An user with that username already exist"));
-                        isValid = false;
-                    }
+                    Console.WriteLine("Error: An user with that username already exist");
+                    Net.SendMsg(_comm.GetStream(), new Answer(false, "An user with that username already exist"));
+                    isValid = false;
                 }
 
-                if (isValid)
-                {
-                    Console.WriteLine("Creation of the new user...");
-                    currentUser = new User(userMsg, comm);
-                    userList.Add(currentUser);
-                    userList.Serialize();
+                if (!isValid) return;
+                Console.WriteLine("Creation of the new user...");
+                _currentUser = new User(userMsg, _comm);
+                _userList.Add(_currentUser);
+                _userList.Serialize();
 
-                    Console.WriteLine("Success: New user added");
-                    Net.SendMsg(comm.GetStream(), new Answer(true, "New user added"));
-                }
+                Console.WriteLine("Success: New user added");
+                Net.SendMsg(_comm.GetStream(), new Answer(true, "New user added"));
             }
 
-            public void Disconnect()
+            private void Disconnect()
             {
-                currentUser.Comm = null;
-                currentUser.Topic = null;
+                _currentUser.Comm = null;
+                _currentUser.Topic = null;
 
 
-                Console.WriteLine("User " + currentUser.Username + " succesfully disconnected");
-                Net.SendMsg(comm.GetStream(), new Answer(true, "Disconnected succesfully."));
+                Console.WriteLine("User " + _currentUser.Username + " successfully disconnected");
+                Net.SendMsg(_comm.GetStream(), new Answer(true, "Disconnected successfully."));
 
-                currentUser = null;
+                _currentUser = null;
             }
         }
     }

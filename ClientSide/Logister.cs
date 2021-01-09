@@ -100,11 +100,9 @@ namespace ClientSide
                 // Manage backspace usage
                 if (i.Key == ConsoleKey.Backspace)
                 {
-                    if (pwd.Length > 0)
-                    {
-                        pwd.Remove(pwd.Length - 1);
-                        Console.Write("\b \b");
-                    }
+                    if (pwd.Length <= 0) continue;
+                    pwd.Remove(pwd.Length - 1);
+                    Console.Write("\b \b");
                 }
 
                 // KeyChar == '\u0000' if the key pressed does not correspond to a printable character, e.g. F1, Pause-Break, etc

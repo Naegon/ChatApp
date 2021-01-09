@@ -3,11 +3,11 @@ using Communication;
 
 namespace ServerSide
 {
-    public class Create
+    public static class Create
     {
         public static void Users()
         {
-            UserList userList = new UserList
+            var userList = new UserList
                     {
                         new User("Bob", "qwe"),
                         new User("Seb", "qwe"),
@@ -18,27 +18,27 @@ namespace ServerSide
             userList.Serialize();
         }
 
-        public static void Topics(UserList userList)
+        public static void Topics()
         {
-            List<Chat> chatMusique = new List<Chat>
+            var chatMusique = new List<Chat>
                     {
-                        new Chat("Bob", "Salut Seb"),
-                        new Chat("Seb", "Oh tient, salut bob !"),
-                        new Chat("Léo", "Qui d'autre est là ?"),
-                        new Chat("Pam", "Il y a moi !"),
-                        new Chat("Seb", "Salut Pam !"),
+                        new Chat("Bob", "Hi Seb"),
+                        new Chat("Seb", "Oh hey, morning Bob !"),
+                        new Chat("Léo", "Who else is here?"),
+                        new Chat("Pam", "There's me!"),
+                        new Chat("Seb", "Hi Pam!")
                     };
 
-            List<Chat> chatSport = new List<Chat>
+            var chatSport = new List<Chat>
                     {
-                        new Chat("Léo", "Demain c'est biathlon !"),
-                        new Chat("Pam", "Oh cool ! Quelle heure ?"),
-                        new Chat("Léo", "14H30"),
-                        new Chat("Léo", "Euh non, 15H !"),
-                        new Chat("Pam", "Super, c'est noté !"),
+                        new Chat("Léo", "Tomorrow is biathlon!"),
+                        new Chat("Pam", "Oh cool ! At what time?"),
+                        new Chat("Léo", "At 14PM"),
+                        new Chat("Léo", "Ahem no, 15PM it is!"),
+                        new Chat("Pam", "Wonderful, well i'll be there!")
                     };
 
-            TopicList topicList = new TopicList
+            var topicList = new TopicList
                     {
                         new Topic("Music", chatMusique),
                         new Topic("Sport", chatSport),

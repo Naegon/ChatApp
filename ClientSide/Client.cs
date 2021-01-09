@@ -37,15 +37,15 @@ namespace ClientSide
 
             switch (choice)
             {
-                case ("1"):
+                case "1":
                     Console.WriteLine("Login \n");
                     Login();
                     break;
-                case ("2"):
+                case "2":
                     Console.WriteLine("Register \n");
                     Register();
                     break;
-                case ("3"):
+                case "3":
                     Console.WriteLine("Quit");
                     Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
                     Comm.Close();

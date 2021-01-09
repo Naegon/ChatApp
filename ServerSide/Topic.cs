@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Communication;
 
 namespace ServerSide
@@ -9,78 +10,61 @@ namespace ServerSide
         {
             private void DisplayTopic(Demand demand)
             {
-                Topic currentTopic = new Topic();
+                var currentTopic = new Topic();
 
-                foreach (Topic topic in topicList)
+                foreach (var topic in _topicList.Where(topic => topic.Title.Equals(demand.Title)))
                 {
-                    if (topic.Title.Equals(demand.Title))
-                    {
-                        currentTopic = topic;
-                        Net.SendMsg(comm.GetStream(), topic);
-                        break;
-                    }
+                    currentTopic = topic;
+                    Net.SendMsg(_comm.GetStream(), topic);
+                    break;
                 }
 
-                currentUser.Topic = currentTopic.Title;
+                _currentUser.Topic = currentTopic.Title;
 
-                if (currentTopic == null)
-                {
-                    Net.SendMsg(comm.GetStream(), new Answer(false, "This topic does not exist"));
-                    return;
-                }
-
-                bool run = true;
+                var run = true;
                 while (run)
                 {
                     Chat chat;
-                    bool isChat;
-
-                    Message message = Net.RcvMsg(comm.GetStream());
-                    isChat = !message.GetType().Equals(typeof(Request));
+                    var message = Net.RcvMsg(_comm.GetStream());
+                    var isChat = message.GetType() != typeof(Request);
 
                     if (isChat) chat = (Chat)message;
                     else
                     {
                         run = false;
                         Console.WriteLine((Request)message);
-                        chat = new Chat("Server", currentUser.Username + " left the chat");
-                        currentUser.Topic = "";
-                        Net.SendMsg(comm.GetStream(), new Chat("", ""));
+                        chat = new Chat("Server", _currentUser.Username + " left the chat");
+                        _currentUser.Topic = "";
+                        Net.SendMsg(_comm.GetStream(), new Chat("", ""));
                     }
 
                     Console.WriteLine(chat);
                     if (isChat) currentTopic.Chats.Add(chat);
 
-                    foreach (User user in userList)
+                    foreach (var user in _userList.Where(user => user.Topic == currentTopic.Title && !user.Username.Equals(_currentUser.Username)))
                     {
-                        if (user.Topic == currentTopic.Title && !user.Username.Equals(currentUser.Username))
-                        {
-                            Console.WriteLine("Sending chat to " + user.Username);
-                            Net.SendMsg(user.Comm.GetStream(), chat);
-                        }
+                        Console.WriteLine("Sending chat to " + user.Username);
+                        Net.SendMsg(user.Comm.GetStream(), chat);
                     }
-                    if (isChat) topicList.Serialize();
+                    if (isChat) _topicList.Serialize();
                 }
             }
 
             private void CreateTopic(Demand newTopic)
             {
-                foreach (Topic topic in topicList)
+                if (_topicList.Any(topic => topic.Title.Equals(newTopic.Title)))
                 {
-                    if (topic.Title.Equals(newTopic.Title))
-                    {
-                        Console.WriteLine("A topic with that name already exist");
-                        Net.SendMsg(comm.GetStream(), new Answer(false, "A topic with that name already exist"));
-                        return;
-                    }
+                    Console.WriteLine("A topic with that name already exist");
+                    Net.SendMsg(_comm.GetStream(), new Answer(false, "A topic with that name already exist"));
+                    return;
                 }
 
                 Console.WriteLine("Creating new topic called " + newTopic.Title);
 
-                topicList.Add(new Topic(newTopic.Title));
-                topicList.Serialize();
+                _topicList.Add(new Topic(newTopic.Title));
+                _topicList.Serialize();
 
-                Net.SendMsg(comm.GetStream(), new Answer(true, "Topic " + newTopic.Title + " succesfully created"));
+                Net.SendMsg(_comm.GetStream(), new Answer(true, "Topic " + newTopic.Title + " successfully created"));
             }
         }
     }
