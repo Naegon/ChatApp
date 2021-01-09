@@ -48,7 +48,7 @@ namespace ClientSideGUI
                 button.TabIndex = 0;
                 button.Text = username;
                 button.UseVisualStyleBackColor = true;
-                button.Click += (sender, EventArgs) => { joinButton_Click(sender, EventArgs, username); };
+                button.Click += (sender, EventArgs) => { joinButton_Click(username); };
                 index ++;
                 Controls.Add(button);
             }
@@ -70,7 +70,7 @@ namespace ClientSideGUI
             this.disconnectButton.Name = "disconnectButton";
             this.disconnectButton.Size = new System.Drawing.Size(150, 53);
             this.disconnectButton.TabIndex = 0;
-            this.disconnectButton.Text = "Disconnect";
+            this.disconnectButton.Text = "Back";
             this.disconnectButton.UseVisualStyleBackColor = true;
             this.disconnectButton.Click += new System.EventHandler(this.disconnectButton_Click);
 

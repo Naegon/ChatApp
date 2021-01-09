@@ -6,7 +6,7 @@ namespace ClientSideGUI
 {
     public partial class Menu : Form
     {
-        private Client _client;
+        private readonly Client _client;
         public Menu(Client client)
         {
             _client = client;
@@ -22,13 +22,13 @@ namespace ClientSideGUI
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Logister login = new Logister(Net.Action.Login, _client);
+            var login = new Logister(Net.Action.Login, _client);
             login.Show();
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            Logister register = new Logister(Net.Action.Register, _client);
+            var register = new Logister(Net.Action.Register, _client);
             register.Show();
         }
     }

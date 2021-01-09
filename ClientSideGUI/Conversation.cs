@@ -7,13 +7,13 @@ namespace ClientSideGUI
 {
     public partial class Conversation : Form
     {
-        private Client _client;
+        private readonly Client _client;
         public Conversation(Topic topic, Client client)
         {
             _client = client;
             InitializeComponent(topic.Title);
 
-            Thread rcvChat = new Thread(RcvChat);
+            var rcvChat = new Thread(RcvChat);
             rcvChat.Start();
         }
 
@@ -22,7 +22,7 @@ namespace ClientSideGUI
             _client = client;
             InitializeComponent(username);
 
-            Thread rcvChat = new Thread(RcvChat);
+            var rcvChat = new Thread(RcvChat);
             rcvChat.Start();
         }
 
@@ -36,7 +36,7 @@ namespace ClientSideGUI
         
         private void Send(object sender, EventArgs e)
         {
-            Chat msg = new Chat(_client.CurrentUser.Username, textBoxChat.Text);
+            var msg = new Chat(_client.CurrentUser.Username, textBoxChat.Text);
             Net.SendMsg(_client.Comm.GetStream(), msg);
             topicText.Text += msg + "\r\n";
             textBoxChat.Text = "";

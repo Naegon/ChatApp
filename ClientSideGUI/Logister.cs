@@ -6,8 +6,8 @@ namespace ClientSideGUI
 {
     public partial class Logister : Form
     {
-        private Client _client;
-        private Net.Action _action;
+        private readonly Client _client;
+        private readonly Net.Action _action;
         
         public Logister(Net.Action action, Client client)
         {

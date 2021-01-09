@@ -8,11 +8,11 @@ namespace ClientSideGUI
     {
         public static DialogResult InputBox(string title, string promptText, ref string value)
         {
-            Form form = new Form();
-            Label label = new Label();
-            TextBox textBox = new TextBox();
-            Button buttonOk = new Button();
-            Button buttonCancel = new Button();
+            var form = new Form();
+            var label = new Label();
+            var textBox = new TextBox();
+            var buttonOk = new Button();
+            var buttonCancel = new Button();
 
             form.Text = title;
             label.Text = promptText;
@@ -29,7 +29,7 @@ namespace ClientSideGUI
             buttonCancel.SetBounds(309, 72, 75, 23);
 
             label.AutoSize = true;
-            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            textBox.Anchor |= AnchorStyles.Right;
             buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
@@ -43,7 +43,7 @@ namespace ClientSideGUI
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
 
-            DialogResult dialogResult = form.ShowDialog();
+            var dialogResult = form.ShowDialog();
             value = textBox.Text;
             return dialogResult;
         }

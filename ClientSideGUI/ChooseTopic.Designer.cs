@@ -64,7 +64,7 @@ namespace ClientSideGUI
                 button.TabIndex = 0;
                 button.Text = title;
                 button.UseVisualStyleBackColor = true;
-                button.Click += (sender, EventArgs) => { joinButton_Click(sender, EventArgs, title); };
+                button.Click += (sender, EventArgs) => { joinButton_Click(title); };
                 index ++;
                 Controls.Add(button);
                 topicButtons.Add(button);
