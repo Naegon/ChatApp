@@ -7,13 +7,14 @@ namespace ClientSideGUI
     // Each client instance will represent a user connected to a server
     public class Client
     {
-        internal UserMsg _currentUser;           // Once logged-in, the current user
-        internal bool _messageRunning;   // Used to control while loop in conversations
+        
+        internal UserMsg CurrentUser;           // Once logged-in, the current user
+        internal bool MessageRunning;   // Used to control while loop in conversations
         public TcpClient Comm { get; }
 
         public Client(string hostname, int port)
         {
-            _messageRunning = false;
+            MessageRunning = false;
             Comm = new TcpClient(hostname, port);
             Console.WriteLine("--> Connection established on " + hostname + ":" + port);
         }
@@ -21,7 +22,7 @@ namespace ClientSideGUI
         // Used in separate thread to send message to conversations
         private void SendChat()
         {
-            while (_messageRunning)
+            while (MessageRunning)
             {
                 var msg = Console.ReadLine();
                 
@@ -29,7 +30,7 @@ namespace ClientSideGUI
                 if (msg != null && msg.Equals("!quit"))
                 {
                     // Break the loop then notify server to stop receiving messages
-                    _messageRunning = false;        
+                    MessageRunning = false;        
                     Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Quit));
                 }
                 else
@@ -37,9 +38,9 @@ namespace ClientSideGUI
                     // Send non-empty messages to the server
                     if (msg != null && !msg.Equals(""))
                     {
-                        Net.SendMsg(Comm.GetStream(), new Chat(_currentUser.Username, msg));
+                        Net.SendMsg(Comm.GetStream(), new Chat(CurrentUser.Username, msg));
                     }
-                    Console.Write("[" + _currentUser.Username + "] ");
+                    Console.Write("[" + CurrentUser.Username + "] ");
                 }
             }
         }
@@ -47,7 +48,7 @@ namespace ClientSideGUI
         // Used in separate thread to receive message from conversations
         private void RcvChat()
         {
-            while (_messageRunning)
+            while (MessageRunning)
             {
                 var chat = (Chat)Net.RcvMsg(Comm.GetStream());
                 
@@ -57,7 +58,7 @@ namespace ClientSideGUI
                 // Some formatting of the received message
                 Console.SetCursorPosition(0, Console.CursorTop);
                 Console.WriteLine(chat);
-                Console.Write("[" + _currentUser.Username + "] ");
+                Console.Write("[" + CurrentUser.Username + "] ");
             }
         }
     }

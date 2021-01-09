@@ -11,7 +11,16 @@ namespace ClientSideGUI
         public Conversation(Topic topic, Client client)
         {
             _client = client;
-            InitializeComponent(topic);
+            InitializeComponent(topic.Title);
+
+            Thread rcvChat = new Thread(RcvChat);
+            rcvChat.Start();
+        }
+
+        public Conversation(string username, Client client)
+        {
+            _client = client;
+            InitializeComponent(username);
 
             Thread rcvChat = new Thread(RcvChat);
             rcvChat.Start();
@@ -27,7 +36,7 @@ namespace ClientSideGUI
         
         private void Send(object sender, EventArgs e)
         {
-            Chat msg = new Chat(_client._currentUser.Username, textBoxChat.Text);
+            Chat msg = new Chat(_client.CurrentUser.Username, textBoxChat.Text);
             Net.SendMsg(_client.Comm.GetStream(), msg);
             topicText.Text += msg + "\r\n";
             textBoxChat.Text = "";
@@ -35,14 +44,14 @@ namespace ClientSideGUI
 
         private void buttonQuit_Click(object sender, EventArgs e)
         {
-            _client._messageRunning = false;        
+            _client.MessageRunning = false;        
             Net.SendMsg(_client.Comm.GetStream(), new Request(Net.Action.Quit));
             Dispose();
         }
         
         private void RcvChat()
         {
-            while (_client._messageRunning)
+            while (_client.MessageRunning)
             {
                 var chat = (Chat)Net.RcvMsg(_client.Comm.GetStream());
                 

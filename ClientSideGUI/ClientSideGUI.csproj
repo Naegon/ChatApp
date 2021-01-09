@@ -26,6 +26,9 @@
       <Compile Update="Conversation.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="ChooseUser.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

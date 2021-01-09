@@ -31,7 +31,7 @@ namespace ClientSideGUI
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(Topic topic)
+        private void InitializeComponent(string topic)
         {
             this.topicText = new System.Windows.Forms.TextBox();
             this.textBoxChat = new System.Windows.Forms.TextBox();
@@ -44,7 +44,6 @@ namespace ClientSideGUI
             this.topicText.Location = new System.Drawing.Point(0, 0);
             this.topicText.Multiline = true;
             this.topicText.Name = "topicText";
-            this.topicText.Text = topic.ToString().Replace("\n", "\r\n");
             this.topicText.ReadOnly = true;
             this.topicText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.topicText.Size = new System.Drawing.Size(800, 404);
@@ -88,14 +87,14 @@ namespace ClientSideGUI
             this.Controls.Add(this.textBoxChat);
             this.Controls.Add(this.buttonQuit);
             this.Name = "Conversation";
-            this.Text = topic.Title;
+            this.Text = topic;
             this.Closing += new System.ComponentModel.CancelEventHandler(this.buttonQuit_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
         private System.Windows.Forms.TextBox textBoxChat;
-        private System.Windows.Forms.TextBox topicText;
+        public System.Windows.Forms.TextBox topicText;
         private System.Windows.Forms.Button buttonSend;
         private System.Windows.Forms.Button buttonQuit;
 

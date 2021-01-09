@@ -20,11 +20,11 @@ namespace ClientSideGUI
         
         private void disconnectButton_Click(object sender, EventArgs e)
         {
-            if (_client._currentUser != null)
+            if (_client.CurrentUser != null)
             {
                 Net.SendMsg(_client.Comm.GetStream(), new Request(Net.Action.Disconnect));
                 Answer answer = (Answer)Net.RcvMsg(_client.Comm.GetStream());
-                _client._currentUser = null;
+                _client.CurrentUser = null;
                 Dispose();
             }
         }
@@ -48,10 +48,21 @@ namespace ClientSideGUI
             Net.SendMsg(_client.Comm.GetStream(), choosedTopic);
             
             Topic topic = (Topic)Net.RcvMsg(_client.Comm.GetStream());
-            _client._messageRunning = true;
+            _client.MessageRunning = true;
             
             Conversation conversation = new Conversation(topic, _client);
             conversation.Show();
+            conversation.topicText.Text = topic.ToString().Replace("\n", "\r\n");
+        }
+        
+        private void privateButton_Click(Object sender, EventArgs e)
+        {
+            Request privateMessage = new Request(Net.Action.GetUserList);
+            Net.SendMsg(_client.Comm.GetStream(), privateMessage);
+
+            UserListMsg userList = (UserListMsg)Net.RcvMsg(_client.Comm.GetStream());
+            if (userList.Usernames.Count <= 0) MessageBox.Show("No connected user yet. Please try again later");
+            else new ChooseUser(_client, userList).Show();
         }
     }
 }

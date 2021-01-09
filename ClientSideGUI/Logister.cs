@@ -30,7 +30,7 @@ namespace ClientSideGUI
             
             if (answer.Success)
             {
-                _client._currentUser = user;
+                _client.CurrentUser = user;
                 var chooseTopic = new ChooseTopic(_client);
                 chooseTopic.Show();
                 Dispose();
