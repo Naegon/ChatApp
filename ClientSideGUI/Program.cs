@@ -20,21 +20,21 @@ namespace ClientSideGUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            var user = new UserMsg(Net.Action.Login, "Bob", "qwe");
-            Net.SendMsg(client.Comm.GetStream(), user);
-            var answer = (Answer)Net.RcvMsg(client.Comm.GetStream());
+            // var user = new UserMsg(Net.Action.Login, "Bob", "qwe");
+            // Net.SendMsg(client.Comm.GetStream(), user);
+            // var answer = (Answer)Net.RcvMsg(client.Comm.GetStream());
+            //
+            // if (answer.Success)
+            // {
+            //     client._currentUser = user;
+            //     Application.Run(new ChooseTopic(client));
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Something went terribly wrong");
+            // }
             
-            if (answer.Success)
-            {
-                client._currentUser = user;
-                Application.Run(new ChooseTopic(client));
-            }
-            else
-            {
-                Console.WriteLine("Something went terribly wrong");
-            }
-            
-            // Application.Run(new Menu(client));
+            Application.Run(new Menu(client));
         }
     }
 }
