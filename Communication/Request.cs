@@ -6,7 +6,7 @@ namespace Communication
     [Serializable]
     public class Request : Message
     {
-        protected Net.Action _action;
+        private Net.Action _action;
         public Net.Action Action { get => _action; set => _action = value; }
 
         public Request() { }
@@ -25,39 +25,35 @@ namespace Communication
     [Serializable]
     public class Demand : Request
     {
-        private readonly string _title;
-        public string Title { get => _title; }
+        public string Title { get; }
 
         public Demand(Net.Action action, string title) : base(action)
         {
-            _title = title;
+            Title = title;
         }
 
         public override string ToString()
         {
-            return "[" + _action + "] " + _title;
+            return "[" + Action + "] " + Title;
         }
     }
 
     [Serializable]
     public class UserMsg : Request
     {
-        private readonly string _username;
-        private readonly string _password;
-
-        public string Username { get => _username; }
-        public string Password { get => _password; }
+        public string Username { get; }
+        public string Password { get; }
 
         public UserMsg(Net.Action action, string username, string password) : base(action)
         {
-            _action = action;
-            _username = username;
-            _password = password;
+            Action = action;
+            Username = username;
+            Password = password;
         }
 
         public override string ToString()
         {
-            return ("[" + _action + "] Username: " + _username + " - Password: " + string.Concat(Enumerable.Repeat("*", _password.Length)));
+            return "[" + Action + "] Username: " + Username + " - Password: " + string.Concat(Enumerable.Repeat("*", Password.Length));
         }
     }
 }
