@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "ClientSideGUI/1.0.0": {
+        "dependencies": {
+          "Communication": "1.0.0"
+        },
+        "runtime": {
+          "ClientSideGUI.dll": {}
+        }
+      },
+      "Communication/1.0.0": {
+        "runtime": {
+          "Communication.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClientSideGUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Communication/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

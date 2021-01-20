@@ -12,22 +12,22 @@ namespace ClientSide
             Console.WriteLine("Asking for Topic list...");
             Net.SendMsg(Comm.GetStream(), new Request(Net.Action.GetTopicList));
 
-            TopicListMsg topicList = (TopicListMsg)Net.RcvMsg(Comm.GetStream());
+            var topicList = (TopicListMsg)Net.RcvMsg(Comm.GetStream());
 
-            int i = 2;
+            var i = 2;
             Console.WriteLine("\nPlease choose one of the listed topic: ");
             Console.WriteLine("1. Private message");
-            foreach (string title in topicList.Titles)
+            foreach (var title in topicList.Titles)
             {
                 Console.WriteLine(i + ". " + title);
                 i++;
             }
             Console.WriteLine(i + ". New Topic");
-            Console.WriteLine((i + 1) + ". Refresh");
-            Console.WriteLine((i + 2) + ". Disconnect");
+            Console.WriteLine(i + 1 + ". Refresh");
+            Console.WriteLine(i + 2 + ". Disconnect");
 
             int choice;
-            int count = topicList.Titles.Count;
+            var count = topicList.Titles.Count;
             do
             {
                 try
@@ -49,16 +49,16 @@ namespace ClientSide
             else if (choice == count + 4) Disconnect();
             else
             {
-                Demand choosedTopic = new Demand(Net.Action.Join, topicList.Titles[choice - 2]);
+                var choosedTopic = new Demand(Net.Action.Join, topicList.Titles[choice - 2]);
                 Net.SendMsg(Comm.GetStream(), choosedTopic);
 
-                Topic topic = (Topic)Net.RcvMsg(Comm.GetStream());
+                var topic = (Topic)Net.RcvMsg(Comm.GetStream());
                 Console.WriteLine(topic);
                 Console.Write("[" + _currentUser.Username + "] ");
 
                 _messageRunning = true;
-                Thread send = new Thread(SendChat);
-                Thread rcv = new Thread(RcvChat);
+                var send = new Thread(SendChat);
+                var rcv = new Thread(RcvChat);
                 send.Start();
                 rcv.Start();
 
@@ -72,15 +72,15 @@ namespace ClientSide
         {
             Console.Clear();
             Console.Write("Name of the new Topic: ");
-            string topicName = Console.ReadLine();
+            var topicName = Console.ReadLine();
 
-            if (topicName.Equals("")) ChooseTopic();
+            if (topicName != null && topicName.Equals("")) ChooseTopic();
             else
             {
-                Demand newTopic = new Demand(Net.Action.CreateTopic, topicName);
+                var newTopic = new Demand(Net.Action.CreateTopic, topicName);
                 Net.SendMsg(Comm.GetStream(), newTopic);
 
-                Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
+                var answer = (Answer)Net.RcvMsg(Comm.GetStream());
 
                 if (!answer.Success)
                 {
@@ -98,8 +98,12 @@ namespace ClientSide
             Console.WriteLine("Disconnecting...");
             Net.SendMsg(Comm.GetStream(), new Request(Net.Action.Disconnect));
 
-            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
-            if (answer.Success) Menu();
+            var answer = (Answer)Net.RcvMsg(Comm.GetStream());
+            if (answer.Success)
+            {
+                _currentUser = null;
+                Menu();
+            }
             else
             {
                 Console.WriteLine(answer);

@@ -1,11 +1,11 @@
 ﻿namespace ClientSide
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             System.Threading.Thread.Sleep(1000);
-            Client client = new Client("127.0.0.1", 8976);
+            var client = new Client("127.0.0.1", 8976);
 
             client.Menu();
         }

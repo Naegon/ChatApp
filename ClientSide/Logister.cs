@@ -5,20 +5,20 @@ namespace ClientSide
 {
     public partial class Client
     {
-        public void Login()
+        private void Login()
         {
             Console.Clear();
             Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
+            var username = Console.ReadLine();
 
             Console.WriteLine("Enter password:");
-            string password = ReadPassword();
+            var password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            UserMsg user = new UserMsg(Net.Action.Login, username, password);
+            var user = new UserMsg(Net.Action.Login, username, password);
             Net.SendMsg(Comm.GetStream(), user);
 
-            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
+            var answer = (Answer)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(answer);
 
             if (answer.Success)
@@ -31,32 +31,32 @@ namespace ClientSide
             else
             {
                 Console.Write("Try again ? (y/n) ");
-                string ans = Console.ReadLine();
-                while (!(ans.Equals("y") || ans.Equals("n")))
+                var ans = Console.ReadLine();
+                while (ans != null && !(ans.Equals("y") || ans.Equals("n")))
                 {
                     Console.Write("Please type y (yes) or n (no) ");
                     ans = Console.ReadLine();
                 }
-                if (ans.Equals("y")) Login();
+                if (ans != null && ans.Equals("y")) Login();
                 else Menu();
             }
         }
 
 
-        public void Register()
+        private void Register()
         {
             Console.Clear();
             Console.WriteLine("Choose an username:");
-            string username = Console.ReadLine();
+            var username = Console.ReadLine();
 
-            Console.WriteLine("Choose a secur password:");
-            string password = ReadPassword();
+            Console.WriteLine("Choose a secure password:");
+            var password = ReadPassword();
 
             Console.WriteLine("Sending data to server...");
-            UserMsg user = new UserMsg(Net.Action.Register, username, password);
+            var user = new UserMsg(Net.Action.Register, username, password);
             Net.SendMsg(Comm.GetStream(), user);
 
-            Answer answer = (Answer)Net.RcvMsg(Comm.GetStream());
+            var answer = (Answer)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(answer);
 
             if (answer.Success)
@@ -69,47 +69,51 @@ namespace ClientSide
             else
             {
                 Console.Write("Try again ? (y/n) ");
-                string ans = Console.ReadLine();
-                while (!(ans.Equals("y") || ans.Equals("n")))
+                var ans = Console.ReadLine();
+                while (ans != null && !(ans.Equals("y") || ans.Equals("n")))
                 {
+                    
                     Console.Write("Please type y (yes) or n (no) ");
                     ans = Console.ReadLine();
                 }
-                if (ans.Equals("y")) Register();
+                if (ans != null && ans.Equals("y")) Register();
                 else Menu();
             }
         }
 
-        public static string ReadPassword()
+        // Used to hide password while typing in
+        private static string ReadPassword()
         {
-            string pwd = "";
+            var pwd = "";
             while (true)
             {
-                ConsoleKeyInfo i = Console.ReadKey(true);
+                // Intercept user input
+                var i = Console.ReadKey(true);
 
+                // Break the loop and return the data on enter key pressed
                 if (i.Key == ConsoleKey.Enter)
                 {
                     Console.WriteLine("\n");
                     break;
                 }
 
-                else if (i.Key == ConsoleKey.Backspace)
+                // Manage backspace usage
+                if (i.Key == ConsoleKey.Backspace)
                 {
-                    if (pwd.Length > 0)
-                    {
-                        pwd.Remove(pwd.Length - 1);
-                        Console.Write("\b \b");
-                    }
+                    if (pwd.Length <= 0) continue;
+                    pwd.Remove(pwd.Length - 1);
+                    Console.Write("\b \b");
                 }
 
                 // KeyChar == '\u0000' if the key pressed does not correspond to a printable character, e.g. F1, Pause-Break, etc
+                // Print a * for each printable characters
                 else if (i.KeyChar != '\u0000')
                 {
                     pwd += i.KeyChar;
                     Console.Write("*");
                 }
             }
-
+            
             return pwd;
         }
     }

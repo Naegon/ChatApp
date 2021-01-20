@@ -9,10 +9,10 @@ namespace ClientSide
         private void ChooseUser()
         {
             Console.Clear();
-            Request privateMessage = new Request(Net.Action.GetUserList);
+            var privateMessage = new Request(Net.Action.GetUserList);
             Net.SendMsg(Comm.GetStream(), privateMessage);
 
-            UserListMsg userList = (UserListMsg)Net.RcvMsg(Comm.GetStream());
+            var userList = (UserListMsg)Net.RcvMsg(Comm.GetStream());
             Console.WriteLine(userList);
 
 
@@ -24,7 +24,7 @@ namespace ClientSide
                 return;
             }
 
-            Console.WriteLine((userList.Usernames.Count + 1) + ". Back\n");
+            Console.WriteLine(userList.Usernames.Count + 1 + ". Back\n");
 
             int choice;
             do
@@ -49,8 +49,8 @@ namespace ClientSide
                 Console.Write("[" + _currentUser.Username + "] ");
 
                 _messageRunning = true;
-                Thread send = new Thread(SendChat);
-                Thread rcv = new Thread(RcvChat);
+                var send = new Thread(SendChat);
+                var rcv = new Thread(RcvChat);
                 send.Start();
                 rcv.Start();
 

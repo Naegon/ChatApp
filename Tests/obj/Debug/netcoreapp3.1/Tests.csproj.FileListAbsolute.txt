@@ -10,3 +10,16 @@
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.dll
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.pdb
 /Users/naegon/Documents/Efrei/M1/C#/ChatProject/Tests/obj/Debug/netcoreapp3.1/Tests.genruntimeconfig.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.exe
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.deps.json
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.runtimeconfig.json
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.runtimeconfig.dev.json
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.dll
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\bin\Debug\netcoreapp3.1\Tests.pdb
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.csprojAssemblyReference.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.AssemblyInfoInputs.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.AssemblyInfo.cs
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.csproj.CoreCompileInputs.cache
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.dll
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.pdb
+C:\Users\hamel\Documents\C#\ChatGUI\Tests\obj\Debug\netcoreapp3.1\Tests.genruntimeconfig.cache

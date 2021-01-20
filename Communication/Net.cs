@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Communication
 {
-    public class Net
+    public static class Net
     {
         public enum Action
         {
@@ -20,13 +20,13 @@ namespace Communication
 
         public static void SendMsg(Stream s, Message message)
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
             bf.Serialize(s, message);
         }
 
         public static Message RcvMsg(Stream s)
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
             return (Message)bf.Deserialize(s);
         }
     }

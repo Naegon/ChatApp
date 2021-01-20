@@ -1,10 +1,10 @@
 ﻿namespace ServerSide
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Server server = new Server(8976);
+            var server = new Server(8976);
             server.Start();
         }
     }
